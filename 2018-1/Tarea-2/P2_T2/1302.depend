@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1527191675 source:/home/nborcoski/Escritorio/24demayo/1302/main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<iterator>
+	<algorithm>
+	<utility>
+	<string>
+
+1527192970 source:c:\users\nicolás borcoski\desktop\carpeta sin título\24demayo\1302\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<iterator>
+	<algorithm>
+	<utility>
+	<string>
+

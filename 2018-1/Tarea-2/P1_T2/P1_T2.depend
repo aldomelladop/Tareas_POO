@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1527194657 source:/home/aldomellado/Documentos/POO/Tarea-2/P1_T2/main.cpp
+	<iostream>
+	<vector>
+	<string>
+	<iterator>
+

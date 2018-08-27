@@ -1,0 +1,344 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{longtable}
+\usepackage{enumerate}
+\usepackage{ucs}
+\usepackage{multirow}  %%INSTALAR ESTE PAQUETE!!!
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[right=2.2cm,left=2.2cm,top=2.2cm,bottom=2.2cm,headsep=1.2cm,footskip=1.2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{fancybox} 
+\usepackage{graphicx,tabularx,latexsym}
+\usepackage{amsthm,amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{tabulary}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[pdftex]{hyperref}
+%\usepackage{ragged2e}
+\hypersetup
+	{
+	bookmarks=true, 
+	unicode=true,
+	pdftitle= Tarea N°2 , 
+	pdfauthor="{Aldo Mellado Opazo, Nicolás Borcoski, Esteban Paz}", 
+	pdfsubject= Programación Orientada al Objeto, 
+	pdfnewwindow=true, 
+	colorlinks=true, 
+	linkcolor=black,
+        linktocpage,
+            linkcolor=blue,
+            anchorcolor=red,
+            citecolor=green,
+            filecolor=blue,
+            menucolor=blue,
+            pagecolor=blue,
+            urlcolor=blue,
+	urlcolor=blue  
+	}
+
+\makeindex
+\def\figcapskip{1pt}
+\def\figtopskip{1pt}
+\def\figbottomskip{1pt}
+\def\figcapmargin{1pt}
+\def\figfarskip{1pt}
+
+
+\pagestyle{fancy}
+ \lhead{Tarea N°2} 
+ \rhead{{Programación Orientada al Objeto }} 
+ \lfoot{}
+ \cfoot{}
+ \rfoot{\thepage} 
+
+% ***********************************************************************************
+\begin{document}
+
+
+
+\renewcommand{\figurename}{\textbf{Fig.}}
+\renewcommand{\tablename}{\textbf{Tabla}}
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\fontsize{7}{9}\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+% *************************************************************************************
+
+\begin{titlepage}
+\hspace{-1cm} \includegraphics[width=1.5cm]{./imagenes/logo}
+  \begin{tabular}{l}
+  \begin{small} \sc Departamento de Ingeniería Eléctrica \end{small}\\
+ \begin{small} \sc Facultad de Ingeniería \end{small}\\  
+ \begin{small} \sc Universidad de Concepción \end{small}\\ 
+ \begin{small} \sc Concepción, Chile. \end{small}\\                 
+
+  \vspace*{1.5cm}\mbox{}
+  \end{tabular}
+  %\bigskip
+
+  \vspace*{1.5 in}
+
+\begin{center}
+\huge{{\Huge I}nforme Tarea {\Huge N°1}\\}
+%\Large{Mediciones Básicas}\\
+\vspace{0.3cm}
+\vspace{0.5cm}
+{\normalsize \hspace{-0.9cm}\textit{Profesor: Mario Medina C. }}\\[0.3cm] 
+{\normalsize \textit{Ayudante: Diego Ramírez V.}}\\[0.3cm] 
+{\normalsize \hspace{-1cm}\itshape{Alumnos: Nicolás Borcoski S.\\ Aldo Mellado O.\\
+\vspace{-0.2cm} \hspace{-0.2cm}Esteban Paz F.}}\\[0.2cm] 
+{\normalsize \textit{\today}}
+\end{center}
+
+\vspace{7.5cm}
+\begin{center}
+\large{Programación Orientada al Objeto}\\
+Ingeniería Civil en Telecomunicaciones
+\end{center}
+\end{titlepage}
+
+
+%-----------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+
+\newpage
+\setcounter{page}{0}
+\thispagestyle{empty}
+\tableofcontents
+
+
+%-----------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+\newpage
+\setcounter{page}{1}
+
+\section{Problema 1}
+Para el primer problema se pide crear una escitala, la cual era una técnica de codificación usada en la antigüedad, la cual consistía en un pergamino que era enrollado al rededor de un cilindro de un diámetro conocido por ambas partes.\\
+
+
+Para efectos de la tarea, se decía que esta debía depender de la cantidad de vueltas, y además del texto que se le entregara, el cual era introducido por consola.\\
+
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=c++, firstline=11, lastline=14]{./codigos/P1_T2.cpp}
+
+Para estas líneas, se define una función llamada escitala, la cual recibe un vector del tipo string el cual es referenciado y no puede ser modificado tal como lo indica \textit{\textbf{const}}, además, esta función recibe una variable que en este caso será el número de vueltas que ''daría al cilindro''.\\
+
+También se definió un vector tipo string auxiliar sobre el cual copiamos l contenido en texto, finalmente se definen dos strings; \textit{\textbf{text}}, que es el string sobre el cual copiaremos la frase a codificar y a la cual le quitaremos los espacios, y \textit{\textbf{auxt}}, que es el string sobre el cual realizaremos la codificación y que es el que devolverá la función.\\
+
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=c++, firstline=16, lastline=22]{./codigos/P1_T2.cpp}
+
+Se definen las constantes que son el números de vueltas, y lent, el cual se define más tarde como el largo del texto \textit{\textbf{''EnunlugardelaManchadecuyonombrenoquieroacordarme''}} previamente trabajado y almacenado en \textbf{\textit{text}}. Se uso \textit{advance}, para poder mover el iterador desplazandolo en tantas unidades como se defina el largo o el número de vueltas en este caso.\\
+
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=c++, firstline=23, lastline=30]{./codigos/P1_T2.cpp}
+
+En estas líneas se usan dos ciclos for, el primer ciclo definido es uno que hace que el iterador se mueva unidad cada vez que se han codificado lados-términos del string, en el caso de que sea \textit{lados = 8}, se moverá una unidad el iterador definido como it1, una vez se hayan codificado 7 letras.\\
+
+Luego, el segundo for es aquel que hace que se vaya agregando al string \textit{\textbf{auxt}} el carácter que está desplazado, respecto del iterador, k unidades. Al comienzo, aparece k, definido como cero, luego se va sumando al número de vueltas, este número nos indica qué posición de carácter se copiará al string auxt.
+
+\newpage
+
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=c++, firstline=33, lastline=50]{./codigos/P1_T2.cpp}
+
+Finalmente en este fragmento de texto se tiene la función main, que es en la que se solicita ingresen una frase, el número de lados y se llama a la función \textbf{\textit{escitala}}, imprimiéndose la palabra codificada.\\
+
+Las consideraciones que se tuvieron que hacer, fueron aquellas asociadas a que para strings no se puede hacer \texttt{push\_back()}, de modo que se tenían que hacer concatenaciones. Además, como sucede en la línea en que se define la función, se tiene que dado que se definió como \textbf{const} el \texttt{vector$<$string$>$\& texto}, se tuvo que hacer una copia de lo contenido en el, por este motivo se creo \texttt{vector$<$string$>$ aux = texto}.
+
+\subsection*{Resultados Problema 1}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{./imagenes/p1t2im1}
+\caption{Codificación escitala para \textit{lados = 8}}
+\label{fig:p1t2im1}
+\end{figure}
+
+De la figura \ref{fig:p1t2im1}  se tiene que la codificación entregada se condice con lo esperado y presentado en la guía de laboratorio, pues, lo entregado por la función es un string \textbf{\texttt{ErcoocndhnqoueaournldmidlaebeauMcrrrgaueomanynae}}
+
+\newpage
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{./imagenes/p1t2im2}
+\caption{Codificación escitala para \textit{lados = 7}}
+\label{fig:p1t2im2}
+\end{figure}
+
+Luego, en la figura \ref{fig:p1t2im2} se tiene que para el caso de \textbf{lados = 7}, el texto recibido se condice con lo esperado pues se obtiene \texttt{EaacbirnrnuredudcyeranehonorllanoamuadoqcegMemuo}.
+\newpage
+\section{Problema 2}
+
+Primero, se invita al usuario a elegir si desea codificar o decodificar el archivo entrada.txt. En caso que su elección no sea válida se repite la pregunta.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{./imagenes/p2t2im3}
+\caption{Mensaje de error}
+\label{fig:p2t2im3}
+\end{figure}
+
+De acuerdo a su elección, luego se consulta por el número de filas y deslazamientos a utilizar.\\
+
+LOs desplazamientos, en caso de ingresarse, se traducen en guiones (-) que se incluyen al inicio del vector de string, lo que vendría a ser algo así:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.6]{./imagenes/p2t2im4}\\
+\caption{Codificación del mensaje ''Ataque al amanecer'', \textbf{filas = 3, desplazamiento = 1}}
+\label{fig:p1t2im4}
+\end{figure}
+
+Se pasa el texto de ?entrada.txt? carácter por carácter a un vector de string, en donde cada letra es un string.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{./imagenes/p2t2im5}
+\caption{Codificación del mensaje ''Ataque al amanecer'', \textbf{filas = 3, desplazamiento = 0}}
+\label{fig:p1t2im5}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{./imagenes/p2t2im6}
+\caption{Codificación del mensaje ''Ataque al amanecer'', \textbf{filas = 4, desplazamiento = 0}}
+\label{fig:p1t2im6}
+\end{figure}
+
+Se puede ver que el primer grupo de letras (la primera fila), su primera letra aparece por primera vez en la posición 2n-2, siendo n el número de filas y vuelve a aparecer a una distancia de +(2n-2). Así se puede generar una salida con la primera fila.
+Mediante la función de la STL ''fill'' se va llenando vector entrada con ''/'' cuando ya se realizó el ''push\_ back'' de esa letra al vector de salida. Se tiene un contador que va guardando la cantidad de letras por cada fila, lo cual se utiliza para el proceso de decodificación.\\
+
+Se repite lo mismo para las filas entre la primera y la última, con un ciclo iterativo, con la salvedad que en el primero de estos casos caso se realiza un pushback inicial individual y luego se van guardando de a 2 las letras que están seguidas (pensando en una separación por filas).\\
+
+Tras almacenar en el orden deseado las letras en el vector de salida se remueven mediante la función ''remove'' los indicadores de desplazamiento y de espacios vacios.
+La salida se copia a salida.txt mediante ofstream y se almacena en un vector para facilitar su despliegue en pantalla, el resultado para el ejemplo ''Ataque Al Amanecer'' presentado en la guía es el siguiente:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{./imagenes/p2t2im7}
+\label{fig:p1t2im7}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{./imagenes/p2t2im8}
+\caption{Codificación del mensaje ''Ataque al amanecer'' mediante código escrito}
+\label{fig:p1t2im8}
+\end{figure}
+
+Ahora para el proceso de decodificación se utiliza el texto entregado en la guía como entrada.txt y se generan vectores que almacenen los grupos de filas, por ejemplo:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{./imagenes/p2t2im9}
+\caption{Codificación del mensaje ''Ataque al amanecer'', \textbf{filas = 3, desplazamiento = 0}}
+\label{fig:p1t2im9}
+\end{figure}
+
+Se almacena en un vector de vectores cada vector correspondiente a cada subdivisión del texto de entrada. Se sabe cuántos caracteres guardar en cada vector gracias al contador que corre desde el código del codificador.\\
+
+
+Luego, mediante iteradores se recorre cada vector componente del vector que contiene los vectores subdivididos.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.05]{./imagenes/p2t2im10}
+\caption{Apuntes en papel}
+\label{fig:p1t2im10}
+\end{figure}
+
+La idea es recorrer los vectores más pequeños como se haría en papel escribiendo la codificación en una línea continua.\\
+
+A continuación se presentaron complicaciones para encontrar una forma generalizada de abordar el recorrido de estos vectores, de forma que la cantidad de veces que se repite el proceso tuvo que ser modificada de forma manual mediante ''ensayo y error'' hasta que no se produjera error de segmentación.\\
+
+En ese proceso se llegó a la decodificación con 6 filas y 2 desplazamientos que dio el siguiente resultado:
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{./imagenes/p2t2im11}
+\caption{Apuntes en papel}
+\label{fig:p1t2im11}
+\end{figure}
+
+En donde se pueden reconocer las primeras líneas de ''El Ingenioso Hidalgo Don Quijote de la Mancha'' de Miguel de Cervantes.
+
+\newpage
+\section{Problema 3}
+Para desarrollar este problema tuvimos varias ideas. Pero elegimos la siguiente solución porque era la más fácil de implementar a nuestro criterio, aunque en algunos fragmentos del código es más mecánica que ingeniosa.\\
+
+\textbf{Codificación:}
+Primero se recibe el archivo del Don Quijote y se insertan a mano guiones bajos, los cuales hacen que no se pierdan los espacios y no se descuadren las coordenadas.
+Luego este texto es transcrito en una lista con caracteres llamada ''pad\_ tarea2''.
+Notamos que cada 75 espacios en esta lista se tiene una nueva fila, entonces se escribe una función llamada ''coord'' en la línea 10. Esta función escribe pares de coordenadas de acuerdo a una relación encontrada con respecto a la posición.\\
+
+Se genera un objeto Mapa el cual contiene 45 listas, una para cada carácter. (Se sabe que son 45 porque se desarrolla una lista llamada ''all\_ characters'' y se mide el largo y se ve cuáles son los caracteres en el texto).\\
+
+En cada una de las listas del mapa se escribe la posición de ocurrencia de cada carácter, como se ve entre la línea 78 a la 394 y la llave de cada lista es en efecto el mismo carácter.\\
+
+Para los casos de K y W se designa por defecto los valores de posición ''-2'' y ''-1'' respectivamente y asimismo se ponen condiciones en la función ''coord'' para que a estos valores asigne los pares (0,0) y (0,1) como fue pedido.\\
+
+Después de este proceso se genera una función llamada ''azar'' en la línea 46, la cual toma un elemento al azar de una lista y lo retorna.\\
+
+Luego se tiene un texto de entrada el cual es el que se quiere codificar, en la línea 408. Este texto ''entrada.txt'' al igual que se hace con el pad, es transformado en una lista de caracteres llamada ''entrada'' en la línea 414.\\
+
+Esta lista ''entrada'' tiene por valores caracteres, los cuales son asociados a las llaves o keys del mapa, entonces se hace un ciclo que recorra ''entrada'' y asocie a ella algún valor azaroso de las listas del mapa, entre las líneas 410 a 433.\\
+
+Luego teniendo las posiciones azarosas del texto entrada ligadas a las posiciones del don Quijote para cada carácter se toman las coordenadas con la función antes dicha ''coord.'', en la línea 435.\\
+
+Finalmente se tiene una lista con los pares de coordenadas correspondientes y se imprimen en un texto llamado ?salida.txt?\\
+
+\textbf{Decodificación:}
+
+Se recibe como entrada el mismo texto ''salida.txt'', y símil a la codificación esta es puesta en una lista de caracteres llamada ''salida2'', en la línea 451.
+Nos damos cuenta que tenemos valores en la lista que no sirven, los cuales son los paréntesis y la coma, que servían para denotar las coordenadas de forma bonita, así que estos son removidos de la lista, en las líneas 455 a 457.\\
+
+Luego esta lista es transformada de contener caracteres a contener enteros, pues después operaremos con estos, así que se toman los valores de caracteres del 0 al 9 y son pasados a los valores 0 a 9 en versión entera, apoyándonos del código ascii y restando 48 espacios, en la línea 464.\\
+
+Se crea una función que decodifica ?decod?, en la línea 32. Esta lo que hace es tomar las coordenadas, las cuales ahora vienen seguidas (se consideran el primer número en posición impar y el que le sigue, como un par de coordenadas) y las asocia a una posición especifica de alguna lista de largo de fila igual a 75, como lo es el pad del don Quijote.\\
+
+Esta función es usada en la lista con las coordenadas y se obtiene la lista con las posiciones en el Quijote, llamada ''salida2\_ decod''. Esta lista es comparada espacio por espacio a la lista ''pad\_ tarea2'' la cual contiene el Quijote, y de esta forma se asocia el valor de la posición a valores de caracteres, para lograr la decodificación en la lista de caracteres llamada ''decodificado'', en la línea 473.
+Finalmente se imprime la lista ''decodificado'' en el texto de salida ''salida\_ decod.txt'', en la línea 479.\\
+
+
+\subsection*{Observaciones:}
+El código tiene errores en la codificación, no son graves. Pero primero se observa que la función ''azar'' efectivamente toma valores al azar, pero son constantes dentro del texto.\\
+
+Otro error que si es un poco grave es que a la hora de insertar las coordenadas para los valores ''K'' y ''W'' se tiene que imprime un par de coordenadas extras, que pueden ser ignoradas visualmente, pero a la hora de decodificar descuadra toda la lista. Una solución no implementada es simplemente eliminar aquellos elementos ''pair'' que estén antes de los pares (0,0) o (0,1), por ejemplo.\\
+
+Otra observación ahora si grave, es que la sección de decodificación no es efectiva, aunque la lógica utilizada para desarrollarla tiene bastante sentido para los integrantes del grupo, tal vez un pequeño desfase en algún numero descuadra absolutamente toda la decodificación.
+
+\end{document}

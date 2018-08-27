@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1525736420 source:/home/aldomellado/Documentos/POO/Tarea 1/Tarea 1/Tarea1P2/main.cpp
+	<iostream>
+	<vector>
+	<iterator>
+	<list>
+	<algorithm>
+
+1525736420 source:/home/aldomellado/Documentos/POO/Tarea-1/Tarea 1/Tarea1P2/main.cpp
+	<iostream>
+	<vector>
+	<iterator>
+	<list>
+	<algorithm>
+

@@ -286,33 +286,36 @@ return 0;
 // 	while(op==1);
 
 // 	return 0;
+
 // }
 
 /*---------------------------------- Ejemplo factorial ------------------------*/
 
-//int main()
-//{
-//	int op=0;
-//	do
-//	{
-//	int n;
-//	long double factorial=1;
-//
-//	cout<<" Ingrese el número del cual desea obtener el factorial: ";cin>>n;cout<<endl;
-//
-//	for(int i=1;i<=n;i++)
-//	{
-//
-//		factorial=factorial*i;
-//	}
-//
-//	cout<<"El resultado del factorial de "<<n<<" es "<<factorial<<endl;
-//	cout<<"Si desea calcular el factorial de otro número, ingrese la opción 1, en caso contrario, escriba 0: ";cin>>op;
-//	}
-//	while(op==1);
-//
-//	return 0;
-//}
+
+int main()
+{
+	int op=0;
+	do
+	{
+	int n;
+	long double factorial=1;
+
+	cout<<" Ingrese el número del cual desea obtener el factorial: ";cin>>n;cout<<endl;
+
+	for(int i=1;i<=n;i++)
+	{
+
+		factorial=factorial*i;
+	}
+
+	cout<<"El resultado del factorial de "<<n<<" es "<<factorial<<endl;
+	cout<<"Si desea calcular el factorial de otro número, ingrese la opción 1, en caso contrario, escriba 0: ";cin>>op;
+	}
+	while(op==1);
+
+	return 0;
+}
+
 
 /*---------------------------------- Ejemplo suma factorial ------------------------*/
 

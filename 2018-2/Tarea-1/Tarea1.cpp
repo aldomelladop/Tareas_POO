@@ -7,11 +7,11 @@
 
 using namespace std;
 
-vector<int> num,prueba;
 
 /*Si se declara global el vector<int> num, se evita tener que definir la función como sigue; vector<int> num2vec(vector<int> num, int value)*/
 vector<int> num2vec(int value)
 {
+    vector<int> num;
    const int base = 10;
    int digit = value % base;
 
@@ -68,7 +68,6 @@ vector<int> prodVect(vector<int> v1,vector<int> v2)
 {
 	
     vector<int> producto;
-    //vector<int> v1,v2,producto;
 		
 	/* Se optó por hacer este reverse puesto que la función push_front() no está disponible para el contenedor del tipo vector, de modo que,
 	si se hace el reverse, se puede trabajar con la funciín push_back()*/
@@ -79,7 +78,7 @@ vector<int> prodVect(vector<int> v1,vector<int> v2)
     vector<int>::iterator it1=v1.begin();
 	vector<int>::iterator it2=v2.begin();
 
-	int mult,m,c=0,x=1;
+	int m,c=0,x=1;
     vector<int> aux = num2vec(0);
     
     while(v2.size()<v1.size())
@@ -89,12 +88,13 @@ vector<int> prodVect(vector<int> v1,vector<int> v2)
 
     for(it2=v2.begin();it2!=v2.end();it2++)
     {
-
         for(it1=v1.begin();it1!=v1.end();it1++)
-        {
-            mult = ((*it2)*(*it1)+ c);
-            aux = sumofvect(aux,num2vec((mult*(pow(10,x)))));
-
+        {   
+            cout<<"*it1 "<<*it1<<"*it2 "<<*it2<<endl;
+            int mult = ((*it2)*(*it1)+ c);
+            cout<<"mult :"<<mult<<endl;
+            aux = sumofvect(aux,num2vec((mult*x)));
+                        
             if(mult < 10)
             {
                 c = 0;
@@ -105,10 +105,10 @@ vector<int> prodVect(vector<int> v1,vector<int> v2)
             	aux.push_back(m);
             	c = (mult/10); /*121/10 = 12 */
             }
+            cout<<"c "<<c<<endl;
         }
     }
-
-            x++;   //k*= 10; /* Amplifica sucesivamente, los valores obtenidos desde las multiplicaciones de unidades, decenas y centenas del numero*/
+        x*= 10; /* Amplifica sucesivamente, los valores obtenidos desde las multiplicaciones de unidades, decenas y centenas del numero*/
 
     if (c > 0)
     {
@@ -127,10 +127,9 @@ int main()
 
     it  = factorial.begin();
 
-    for(int i = 2; i<=10;i++)
+    for(int i = 2; i<=4;i++)
     {
-        factorial = prodVect(factorial,num2vec(i)); //iteramos la multiplicacion entre vectores
-        k++;
+        factorial = prodVect(factorial,num2vec(i)); //multiplicacion entre vectores
     }
 
     
@@ -141,17 +140,20 @@ int main()
     for(it;it!=factorial.end();it++)
     {
         cout<<*it<<" ";
+        sum+=*it;
+        k++;
+        cout<<"k: "<<k<<endl;
     }
     
     cout<<"\n\n1000! tiene "<<k<<" dígitos. "<<endl;
 
+    cout<<"\nLa suma de sus digitos es: "<<sum<<"\n"<<endl;
+    /*
     for(it;it!=factorial.end();it++)
     {
-        cout<<"el valor de *it es:"<<*it<<endl;
+     //   cout<<"el valor de *it es:"<<*it<<endl;
         sum+=*it;
     }
-
-    cout<<"\nLa suma de sus digitos es: "<<sum<<endl;    
-
-	return 0;
+    */
+	return 0; 
 }

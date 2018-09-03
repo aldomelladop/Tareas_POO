@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1526721295 source:/home/redes01/mytest/tarea2_p3/main.cpp
-	<iostream>
-	<algorithm>
-	<list>
-	<iterator>
-

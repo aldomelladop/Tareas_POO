@@ -4,53 +4,65 @@
 
 using namespace std;
 
-vector<int> lass(int n)
+void slas(vector<int> lass)
 {
-	int count=1; //Inicializado en 1 pues se considera el primer elemento, es decir, para 111 sería, a la segunda ocurrencia, un count=2;
-	vector <int> lass, ssal;
-	vector <int>::iterator it=lass.begin();
-	vector <int>::iterator it1=ssal.begin();
-	lass.push_back(1);
+	vector <int> ssal,ds;
+	ssal = lass;
+	lass.clear();
 
-for(int k=1;k<=n;k++) //Avanza en los niveles de la secuencia.
-{
-	for(it;it!=lass.end();it++)
+	//cout<<"imprimiendo ssal ";
+	//for(auto x:ssal){cout<<x;}
+	//cout<<"\n";
+
+	vector <int>::iterator it=ssal.begin();
+
+	int	counter = 1; //Inicializamos en 1 el contador, a contar de la segunda ocurrencia será 2.
+
+	for(it;it<=ssal.end();it++)
+    {
+
+        if(*(it)==*(it+1) && (it)!=ssal.end()-1)
 		{
-			if((it)=lass.end()) //Si es que he llegado al final del nivel de la secuencia, evaluar si es que el penultimo dígito es igual al ultimo
-			{
-				if(*(it-1)==*(it))
-				{
-					cou
-				}	
-			}
-			while(*it==*(it+1))
-			{
-				count++;
-			}
-            ssal=lass;
-            lass.clear();
-            lass.push_back(count);
-            lass.push_back(*it1);
-            it1++;
-		}
-	}
-return lass;
+            cout<<"\nentra al if"<<endl;
+            cout<<"valor del iterador: "<<*it<<endl;
+            counter++;
+        }
+		else if(it==ssal.end()) //en caso contrario, haz una copia de los elementos almacenados en el vector, borra el vector actual
+		{
+            cout<<"\nEntra al else if"<<endl;
+            cout<<"valor del iterador: "<<*it<<endl;
+            lass.push_back(counter);
+            lass.push_back(*it);
+            counter=1;
+        }
+        else
+        {
+            cout<<"Entrando al else"<<endl;
+            {
+                cout<<"valor del iterador: "<<*it<<endl;
+                lass.push_back(*it);
+            }
+        }
+    }
+    ds = lass;
+    for(auto x:ds){cout<<x;}
 }
-
 
 int main()
 {
-	int n;
-	vector<int> ds;
-	vector<int>::iterator it=ds.begin();
+	int n ;
+	vector <int> lass; //lass = look and say sequence
+    lass.push_back(1);
 
-	cout<<"Ingrese el nivel de la secuencia Look and Say (Lass) hasta el cual desea que desea mostrar: ";
+	cout<<"Ingrese el nivel de la secuencia Look and Say (Lass) hasta el cual desea mostrar: ";
 	cin>>n;
 
-	for(int j=0;j<=n;j++)
-	{	
-		lass(j);
-		cout<<"La línea "<<j<<" tiene por secuencia: ";   	
-	}
+    cout<<"\nEs la secuencia correspondiente a la línea: \n"<<endl;
+
+	for(int j=1;j<=n;j++)
+	{
+		cout<<"\nL"<<j<<" ";
+        slas(lass);
+    }
 	return 0;
 }

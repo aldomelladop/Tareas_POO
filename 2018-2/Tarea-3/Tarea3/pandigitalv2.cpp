@@ -1,14 +1,147 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <sstream> 
 #include <list>
+#include <vector>
+#include <math.h>
 
 using namespace std;
 
 int factorial(int largol1);
 void permutar(list<int>l1,int factorial);
-//void quitarceros();
 void propiedad();
+vector<int> int2vector(int num);
+int divisible(int modulo);
+
+int divisibles(int modulo)
+{
+	int temp,j=0;
+	long int aux=0,suma;
+	int dv2=0,dv3=0,dv5=0,dv7=0,dv11=0,dv13=0,dv17=0;
+
+	if(modulo==2)
+	{
+		ifstream entrada("propiedad2.txt");
+		while(entrada>>temp)
+		{	
+			aux = temp;
+			if((aux%modulo)==0)
+				{j++;
+		}
+		entrada.close();
+	}
+	else if(modulo==3)
+	{
+		ifstream entrada("propiedad3.txt");
+		
+		while(entrada>>temp)
+		{
+			aux = temp;
+			if((aux%modulo)==0)
+				{j++;}
+		}
+	}
+	else if(modulo==3)
+	{
+		ifstream entrada("propiedad3.txt");
+		
+		while(entrada>>temp)
+		{
+			aux = temp;
+			if((aux%modulo)==0)
+				{j++;}
+		}
+	}
+	else if(modulo==5)
+	{
+		ifstream entrada("propiedad5.txt");
+		
+		while(entrada>>temp)
+		{
+			aux = temp;
+			if((aux%modulo)==0)
+				{j++;}
+		}
+	}
+	else if(modulo==7)
+	{
+		ifstream entrada("propiedad7.txt");
+		
+		while(entrada>>temp)
+		{
+			aux = temp;
+			if((aux%modulo)==0)
+				{j++;}
+		}
+	}
+	else if(modulo==11)
+	{
+		ifstream entrada("propiedad11.txt");
+		
+		while(entrada>>temp)
+		{
+			aux = temp;
+			if((aux%modulo)==0)
+				{j++;}
+		}
+	}
+	else if(modulo==13)
+	{
+		ifstream entrada("propiedad13.txt");
+		
+		while(entrada>>temp)
+			{
+				aux = temp;
+				if((aux%modulo)==0)
+					{j++;}
+			}
+	}
+	else if(modulo==17)
+	{
+		ifstream entrada("propiedad17.txt");
+		
+		while(entrada>>temp)
+		{
+			aux = temp;
+			if((aux%modulo)==0)
+				{j++;}
+		}
+	}	
+	return j;
+}
+
+vector<int> int2vector(int num) //Creamos una funcion para convertir de entero a vector
+{
+        int n = num;
+        vector<int> v1;
+
+        int r = 0, aux = 0;
+        int d = 10;
+
+        while(r!= n)  //Este while tiene como funcion, contar la cantidad de cifras que tiene n
+        {
+            r = n%d;
+            d = d * 10;
+            aux++;
+        }
+        aux--;
+
+        int cif = aux;
+        d = pow(10,cif);
+        r = 0;
+
+        while( cif >= 0)  //este while guarda cifra por cifra en el vector
+        {
+            int num = n / d;
+            r = n % d;
+            n = r;
+            d /= 10;
+            v1.push_back(num);
+            cif--;
+        }
+        return v1;
+}
 
 int factorial(int largol1)
 {
@@ -45,105 +178,68 @@ void permutar(list<int>l1,int factorial)
 		j++;
 	}
 	salida.close();
-//	quitarceros();
 	propiedad();
 }
-
-/*
-void quitarceros()
-{
-    long long int counter=0;
-    int largoc1=0,temp_sc=0;
-	string temp;
-    list<string> c1;
-    
-    ifstream entrada("salida.txt");
-    ofstream salida("salida_sin_ceros.txt");
-
-    cout<<"\n";
-
-    while(entrada >> temp)
-	{			
-
-		if(temp[0]!='0')
-		{
-//		cout<<"temp: "<<temp<<endl;
-		c1.push_back(temp);
-		salida<<temp;
-		salida<<"\n";
-		}
-	counter++;
-	}
-	entrada.close();
-	salida.close();
-
-// Hasta acá, los números están calculados, almacenados y también filtrados de aquellos que tienen por primer dígito un cero
-	cout<<"La cantidad de números pandigitales, para números del 0-9, es: "<<counter<<endl;
-	propiedad();
-}
-*/
 
 void propiedad()
 {
-	int d2=0,d3=0,d4=0,d5=0,d7=0,d11=0,d13=0,d17=0;
-	int dv2=0,dv3=0,dv5=0,dv7=0,dv11=0,dv13=0,dv17=0;
-	long long int temp;
+	vector<int>vector1;
+	string temp;
+	long long int aux;
+	int d2=0,d3=0,d4=0,d5=0,d7=0,d11=0,d13=0,d17=0,suma=0;
+
 	list<long long int> prop,listafinal;
-	//list<long long int>::iterator it= prop.begin();
 
 	ifstream entrada("salida.txt");
-	ofstream salidaf("propiedad.txt");
-
+	
 	while(entrada >> temp)
 	{			
-		prop.push_back(temp);
-		list<long long int>::iterator it= prop.begin();
+		aux = stoi(temp);
+		vector1 = int2vector(aux);
 		
-		for(it;it!=prop.end();it++)	
+		ofstream salida2("propiedad2.txt");
+		ofstream salida3("propiedad3.txt");
+		ofstream salida5("propiedad5.txt");
+		ofstream salida7("propiedad7.txt");
+		ofstream salida11("propiedad11.txt");
+		ofstream salida13("propiedad13.txt");
+		ofstream salida17("propiedad17.txt");
+		
+		vector<int>::iterator it = vector1.begin();
+		
+		for(it;it!=vector1.end();it++)		
 		{
-			d2 = (*(it+1))+ (*(it+2))+ (*(it+3));
-			d3 = (*(it+2))+(*(it+3))+(*(it+4));
-			d5 = *(it+3)+*(it+4)+*(it+5);
-			d7 = *(it+4)+*(it+5)+*(it+6);
-			d11 = *(it+5)+*(it+6)+*(it+7);
-			d13 = *(it+6)+*(it+7)+*(it+8);
-			d17 = *(it+7)+*(it+8)+*(it+9);
-
-			if(d2%2!=0)
-			{
-				dv2++;
-			}
-			else if(d3%3!=0)
-			{
-				dv3++;
-			}
-			else if(dv5%5!=0)
-			{
-				dv5++;
-			}
-			else if(d7%7!=0)
-			{
-				dv7++;
-			}
-			else if(d11%11!=0)
-			{
-				dv11++;
-			}
-			else if(d13%13!=0)
-			{
-				dv13++;
-			}
-			else if(d17%17!=0)
-			{
-				dv17++;
-			}
+			salida2<<(*(it+1))<<(*(it+2))<<(*(it+3));
+			salida2<<"\n";
+			salida3<<(*(it+2))<<(*(it+3))<<(*(it+4)); 
+			salida3<<"\n";
+			salida5<<(*(it+3))<<(*(it+4))<<(*(it+5));
+			salida5<<"\n";
+			salida7<<(*(it+4))<<(*(it+5))<<(*(it+6));
+			salida7<<"\n";
+			salida11<<(*(it+5))<<(*(it+6))<<(*(it+7));
+			salida11<<"\n";
+			salida13<<(*(it+6))<<(*(it+7))<<(*(it+8));
+			salida13<<"\n";
+			salida17<<(*(it+7))<<(*(it+8))<<(*(it+9));
+			salida17<<"\n";
 		}
-		
-
-
-	}
+	salida2.close();
+	salida3.close();
+	salida5.close();
+	salida7.close();
+	salida11.close();
+	salida13.close();
+	salida17.close();
 	entrada.close();
-	salidaf.close();
+	}
+	vector<int> modulo={2,3,5,7,11,13,17};
+	vector<int>::iterator itm = modulo.begin();
+	for(itm;itm!=modulo.end();itm++)
+	{
+		cout<<"\nLa cantidad de números divisibles por "<<*itm<<" es: "<<divisibles(*itm)<<endl;
+	}
+	cout<<"\nLa suma de los números pandigitales que cumplen la propiedad: "<<suma<<endl;
 }
 
  int main()

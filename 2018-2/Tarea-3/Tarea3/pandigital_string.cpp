@@ -103,24 +103,7 @@ void propiedad()
 	}
 }
 
-list<int> num2vec(long long int value)
-{
-   list<int> lista;
-   const int base = 10;
-   long long int digit = value % base;
-
-   if ( value /= base )
-   {
-   	 num2vec(value);
-   }
-
-   lista.push_back( digit ); /* Si va anotada acá, es similar a que se aplicara un reverse */
-   
-   return lista;
-}
-
-
- int main()
+int main()
 {
 	long int largol1,perm=0;
 	list<int>l1;

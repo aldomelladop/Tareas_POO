@@ -1,12 +1,12 @@
 #include<iostream>
 #include<math.h>
-#include <string.h>
-#include <stdlib.h>
+#include<string.h>
+#include<stdlib.h>
 #include<iomanip>
-#include <string>
-#include <vector>
-#include <map>
-#include <algorithm>
+#include<string>
+#include<vector>
+#include<map>
+#include<algorithm>
 
 using namespace std;
 
@@ -291,7 +291,7 @@ return 0;
 
 /*---------------------------------- Ejemplo factorial ------------------------*/
 
-
+/*
 int main()
 {
 	int op=0;
@@ -315,7 +315,7 @@ int main()
 
 	return 0;
 }
-
+*/
 
 /*---------------------------------- Ejemplo suma factorial ------------------------*/
 

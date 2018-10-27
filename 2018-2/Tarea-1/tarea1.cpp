@@ -26,7 +26,7 @@ vector<int> num2vec(vector<int> vector, int value)
 
 int sumofvect(vector<int> v1,vector<int>v2)
 {	
-	int Suma;
+	int Suma,aux,c;
 	vector<int>suma;
     vector<int>::iterator it1=v1.begin();
     vector<int>::iterator it2=v2.begin();

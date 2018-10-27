@@ -7,8 +7,8 @@ vector<int> countandSay(vector<int> lass,int n)
 {
 	int l,counter =1;
 	vector <int> ssal,ds;
+    lass.push_back(1); 
     lass.push_back(1);
-	lass.push_back(1);
 
 	ssal = lass;
 	ds = ssal;
@@ -22,14 +22,10 @@ vector<int> countandSay(vector<int> lass,int n)
                     /*Busca coincidencias entre el valor y el valor posterior a este, haciendo la salvedad de que no se haga esta evaluacion
                     si es que se ha llegado al valor previo al termino del vector*/
                 {
-//                    cout<<"\nentra al if"<<endl;
-                   // cout<<"valor del iterador: "<<*it<<endl;
                     counter++;
                 }
                 else if(it==ssal.end()-1) //en caso contrario, haz una copia de los elementos almacenados en el vector, borra el vector actual
                 {   /*si es que se llega al final del vector, se debe hacer lo siguiente*/
-//                  cout<<"\nEntra al else if"<<endl;
-                    //cout<<"valor del iterador: "<<*it<<endl;
                     lass.push_back(counter);
                     lass.push_back(*it);
                     counter=1; //vuelve el contador a uno luego de haber llegado al termino luego de recorrer del vector

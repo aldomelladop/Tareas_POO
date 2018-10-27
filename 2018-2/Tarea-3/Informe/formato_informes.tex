@@ -1,0 +1,194 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{longtable}
+\usepackage{enumerate}
+\usepackage{ucs}
+\usepackage{multirow}  %%INSTALAR ESTE PAQUETE!!!
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[right=2.2cm,left=2.2cm,top=2.2cm,bottom=2.2cm,headsep=1.2cm,footskip=1.2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{fancybox} 
+\usepackage{graphicx,tabularx,latexsym}
+\usepackage{amsthm,amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{tabulary}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[pdftex]{hyperref}
+%\usepackage{ragged2e}
+\hypersetup
+	{
+	bookmarks=true, 
+	unicode=true,
+	pdftitle= Tarea N°1 , 
+	pdfauthor="{Aldo Mellado Opazo}", 
+	pdfsubject= Programación Orientada al Objeto, 
+	pdfnewwindow=true, 
+	colorlinks=true, 
+	linkcolor=black,
+        linktocpage,
+            linkcolor=blue,
+            anchorcolor=red,
+            citecolor=green,
+            filecolor=blue,
+            menucolor=blue,
+            pagecolor=blue,
+            urlcolor=blue,
+	urlcolor=blue  
+	}
+
+\makeindex
+\def\figcapskip{1pt}
+\def\figtopskip{1pt}
+\def\figbottomskip{1pt}
+\def\figcapmargin{1pt}
+\def\figfarskip{1pt}
+
+
+\pagestyle{fancy}
+ \lhead{Tarea N°3} 
+ \rhead{{Programación Orientada al Objeto}} 
+ \lfoot{}
+ \cfoot{}
+ \rfoot{\thepage} 
+
+% ***********************************************************************************
+\begin{document}
+
+
+
+\renewcommand{\figurename}{\textbf{Fig.}}
+\renewcommand{\tablename}{\textbf{Tabla}}
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\fontsize{7}{9}\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+% *************************************************************************************
+
+\begin{titlepage}
+\hspace{-1cm} \includegraphics[width=1.5cm]{./imagenes/logo.png}
+  \begin{tabular}{l}
+  \begin{small} \sc Departamento de Ingeniería Eléctrica \end{small}\\
+ \begin{small} \sc Facultad de Ingeniería \end{small}\\  
+ \begin{small} \sc Universidad de Concepción \end{small}\\ 
+ \begin{small} \sc Concepción, Chile. \end{small}\\                 
+
+  \vspace*{1.5cm}\mbox{}
+  \end{tabular}
+  %\bigskip
+
+  \vspace*{1.5 in}
+
+\begin{center}
+\Huge{{\Huge I}nforme {\Huge N°3}\\}
+\vspace{0.3cm}
+\large{\bf Los números pandigitales de 0-9}\\
+\vspace{1cm}
+{\normalsize \textit{Profesor: Mario Medina}}\\[0.2cm]
+{\normalsize \textit{Alumno: Aldo Mellado Opazo}}\\[0.5cm] 
+{\normalsize \textit{15 de septiembre de 2018}}
+\end{center}
+
+\vspace{9cm}
+\begin{center}
+\large{Programación Orientada al Objeto}\\
+Ingeniería Civil en Telecomunicaciones
+\end{center}
+\end{titlepage}
+
+
+%-----------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+%
+%\newpage
+%\setcounter{page}{0}
+%\thispagestyle{empty}
+%\tableofcontents
+%
+%
+%%-----------------------------------------------------------------------------------------------
+%%----.------------------------------------------------------------------------------------------
+%%----.------------------------------------------------------------------------------------------
+%\newpage
+%\setcounter{page}{1}
+
+\section{Los números pandigitales de 0-9}
+
+Se nos introduce a los números pandigitales explicándonos que es el resultado de la combinatoria entre ciertos digitos cuya principal propiedad es que estos aparecen sólo una vez. Es por esta definición que en la implementación de la resolución de esta tarea se consideró la combinatoria, llevada a cabo en el código por la siguiente función:\\
+
+\framebox{
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=48,lastline=57]{./codes/T3_pandigital.cpp}\label{lst:sumofvec}
+}
+\vspace{0.5cm}
+
+Esto, acorde a la combinatoria, es capaz de obtener el número de posibles combinaciones de dígitos entre 0-9. Y que de acuerdo a lo entregado por la función corresponde a 3628800.\\
+Posteriormente se debían generar dichas permutaciones y para ello se hizo uso de la siguiente función.\\
+
+\framebox{
+\lstset{style=mystyle, language = C++}
+\lstinputlisting[language = C++,firstline = 61, lastline =82] {./codes/T3_pandigital.cpp}}
+
+\vspace{0.5cm}
+Notar que además de valerse de la función \texttt{next\_ permutation(l2.begin(),l2.end())} para obtener las posibles permutaciones, se hace uso de un archivo de texto generado al cual se le escriben los valores resultantes. Esto será especialmente util para cuando deban hacerse ciertas consideraciones posteriores, pues permitirá que el procesamiento sea más rápido que si se mostrara por consola o se calculasen cada vez que se desee ejecutar una condición sobre los números de la permutación.\\
+
+Luego se pide que para los números generados, se evalúe cuántos y cuáles de ellos satisfacen las condiciones dadas. Para dicho cometido se genera la siguiente función:\\
+
+%\framebox{
+\lstset{style = mystyle,language = C++}
+\lstinputlisting[language = C++, firstline = 87, lastline = 87]{./codes/T3_pandigital.cpp}
+%}
+
+Como se aprecia en el código adjuntado en al mail enviado, se tiene que una vez definidos los enteros que servirán de contadores de ocurrencia de cada una de las propiedades pedidas, se procede a transformar, mediante \texttt{stoi(temp)}, los números generados que se almacenaron en forma de strings, a enteros para poder así travajar con ellos. Se trabaja además con la función \texttt{int2vector}, que nos permite transformar los números, en vectores que serán recorridos por iteradores. \\
+
+\newpage
+Así, tal y como se aprecia en las siguientes líneas\\
+
+Se tiene que se evalúan las condiciones, y luego, se establece si hubo o no una ocurrencia. 
+
+%\framebox{
+\lstset{style = mystyle,language = C++}
+\lstinputlisting[language = C++, firstline = 100, lastline =145]{./codes/T3_pandigital.cpp}
+%}
+
+Finalmente, se pide saber cuántos números son finalmente divisibles por 2, 3, 5, 7, 11, 13 y 17 respectivamente. Esta información es entregada, como dicen las siguientes líneas, por los valores de, \texttt{dv2,dv3,dv5,dv7,dv11,dv13,dv17}
+
+\lstset{style = mystyle,language = C++}
+\lstinputlisting[language = C++, firstline = 150, lastline =158]{./codes/T3_pandigital.cpp}
+
+\subsection{Problemas}
+
+\begin{enumerate}
+\item{Uno de los problemas presentados, fue que dada la gran cantidad de números que se debían generar, evaluarlos en el momento o iterar la función \texttt{permutar} por todas y cada una de las veces que se deseara evaluar alguna condición no era en lo absoluto eficiente y generar un vector de vectores de 362800 elementos tampoco era muy factible, de modo que la alternativa del archivo de texto era sino, una de las más óptimas.}
+\item{\textbf{Cantidades y suma:} se aprecia en el código que tanto la suma, como la cantidad de números divisibles por los distintos números primos, en consideración de la cantidad de números generados es notoriamente baja, esto debido a cómo se concibió el código y es que por ejemplo, para la suma, se tomaron los números resultantes de más de 9 cifras de modo que al sumarlos todos se produjo overflow y el número representado no es el que realmente debió obtenerse.}
+\end{enumerate}
+\end{document}

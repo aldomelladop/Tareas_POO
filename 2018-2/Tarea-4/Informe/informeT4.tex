@@ -1,0 +1,160 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{longtable}
+\usepackage{enumerate}
+\usepackage{ucs}
+\usepackage{multirow}  %%INSTALAR ESTE PAQUETE!!!
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[right=2.2cm,left=2.2cm,top=2.2cm,bottom=2.2cm,headsep=1.2cm,footskip=1.2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{fancybox} 
+\usepackage{graphicx,tabularx,latexsym}
+\usepackage{amsthm,amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{tabulary}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[pdftex]{hyperref}
+%\usepackage{ragged2e}
+\hypersetup
+	{
+	bookmarks=true, 
+	unicode=true,
+	pdftitle= Tarea N°4 , 
+	pdfauthor="{Aldo Mellado Opazo}", 
+	pdfsubject= Programación Orientada al Objeto, 
+	pdfnewwindow=true, 
+	colorlinks=true, 
+	linkcolor=black,
+        linktocpage,
+            linkcolor=blue,
+            anchorcolor=red,
+            citecolor=green,
+            filecolor=blue,
+            menucolor=blue,
+            pagecolor=blue,
+            urlcolor=blue,
+	urlcolor=blue  
+	}
+
+\makeindex
+\def\figcapskip{1pt}
+\def\figtopskip{1pt}
+\def\figbottomskip{1pt}
+\def\figcapmargin{1pt}
+\def\figfarskip{1pt}
+
+
+\pagestyle{fancy}
+ \lhead{Tarea N°4} 
+ \rhead{{Programación Orientada al Objeto}} 
+ \lfoot{}
+ \cfoot{}
+ \rfoot{\thepage} 
+
+% ***********************************************************************************
+\begin{document}
+
+
+
+\renewcommand{\figurename}{\textbf{Fig.}}
+\renewcommand{\tablename}{\textbf{Tabla}}
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\fontsize{7}{9}\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+% *************************************************************************************
+
+\begin{titlepage}
+\hspace{-1cm} \includegraphics[width=1.5cm]{./imagenes/logo.png}
+  \begin{tabular}{l}
+  \begin{small} \sc Departamento de Ingeniería Eléctrica \end{small}\\
+ \begin{small} \sc Facultad de Ingeniería \end{small}\\  
+ \begin{small} \sc Universidad de Concepción \end{small}\\ 
+ \begin{small} \sc Concepción, Chile. \end{small}\\                 
+
+  \vspace*{1.5cm}\mbox{}
+  \end{tabular}
+  %\bigskip
+
+  \vspace*{1.5 in}
+
+\begin{center}
+\Huge{{\Huge I}nforme {\Huge N°4}\\}
+\vspace{0.3cm}
+\large{\bf Simulación de eventos discretos}\\
+\vspace{1cm}
+{\normalsize \textit{Profesor: Mario Medina}}\\[0.2cm]
+{\normalsize \textit{Alumno: Aldo Mellado Opazo}}\\[0.5cm] 
+{\normalsize \textit{24 de septiembre de 2018}}
+\end{center}
+
+\vspace{9cm}
+\begin{center}
+\large{Programación Orientada al Objeto}\\
+Ingeniería Civil en Telecomunicaciones
+\end{center}
+\end{titlepage}
+
+
+%-----------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+
+\newpage
+\setcounter{page}{0}
+\thispagestyle{empty}
+\tableofcontents
+
+
+%-----------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+\newpage
+\setcounter{page}{1}
+
+\section{Simulación de eventos discretos}
+
+Para esta tarea se entregaba un archivo de texto del cuál se nos daban tiempos y prioridades, dichos valores debían ser procesados y con base en ellos, obtenidos otros parámetros y comportamientos de la red o del sistema que se estaba simulando.\\
+
+Había además como objetivo el simular la respuesta ante los distintos métodos que se solicitaba.\\
+
+Para la extracción de los datos, al comienzo consideré la posibilidad de tomarlos y enviarlos usando mapas o pair a vectores, sin embargo, por simplicidad y por optimización usé 
+\texttt{tuple}, que me permitía leer desde un archivo de texto, elementos almacenados en forma de columnas y llevarlos a elementos del tipo \texttt{list<float>}, llamados \textit{tiempo1, tiempo2, priority}, respectivamente.\\
+
+Lo comentado se halla en las siguientes líneas de código.\\
+
+\framebox{
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=14,lastline=36]{./codes/tarea-4.cpp}
+}
+
+\end{document}

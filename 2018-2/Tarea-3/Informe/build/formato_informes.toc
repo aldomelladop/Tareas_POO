@@ -1,0 +1,2 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Los n\'umeros pandigitales de 0-9}{1}{section.1}

@@ -1,0 +1,2 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Simulaci\'on de eventos discretos}{1}{section.1}

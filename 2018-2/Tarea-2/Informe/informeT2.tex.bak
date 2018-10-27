@@ -1,0 +1,263 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{longtable}
+\usepackage{enumerate}
+\usepackage{ucs}
+\usepackage{multirow}  %%INSTALAR ESTE PAQUETE!!!
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[right=2.2cm,left=2.2cm,top=2.2cm,bottom=2.2cm,headsep=1.2cm,footskip=1.2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{fancybox} 
+\usepackage{graphicx,tabularx,latexsym}
+\usepackage{amsthm,amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{tabulary}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[pdftex]{hyperref}
+%\usepackage{ragged2e}
+\hypersetup
+	{
+	bookmarks=true, 
+	unicode=true,
+	pdftitle= Tarea N°1 , 
+	pdfauthor="{Aldo Mellado Opazo}", 
+	pdfsubject= Programación Orientada al Objeto, 
+	pdfnewwindow=true, 
+	colorlinks=true, 
+	linkcolor=black,
+        linktocpage,
+            linkcolor=blue,
+            anchorcolor=red,
+            citecolor=green,
+            filecolor=blue,
+            menucolor=blue,
+            pagecolor=blue,
+            urlcolor=blue,
+	urlcolor=blue  
+	}
+
+\makeindex
+\def\figcapskip{1pt}
+\def\figtopskip{1pt}
+\def\figbottomskip{1pt}
+\def\figcapmargin{1pt}
+\def\figfarskip{1pt}
+
+
+\pagestyle{fancy}
+ \lhead{Tarea N°2} 
+ \rhead{{Programación Orientada al Objeto}} 
+ \lfoot{}
+ \cfoot{}
+ \rfoot{\thepage} 
+
+% ***********************************************************************************
+\begin{document}
+
+
+
+\renewcommand{\figurename}{\textbf{Fig.}}
+\renewcommand{\tablename}{\textbf{Tabla}}
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\fontsize{7}{9}\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+% *************************************************************************************
+
+\begin{titlepage}
+\hspace{-1cm} \includegraphics[width=1.5cm]{./imagenes/logo.png}
+  \begin{tabular}{l}
+  \begin{small} \sc Departamento de Ingeniería Eléctrica \end{small}\\
+ \begin{small} \sc Facultad de Ingeniería \end{small}\\  
+ \begin{small} \sc Universidad de Concepción \end{small}\\ 
+ \begin{small} \sc Concepción, Chile. \end{small}\\                 
+
+  \vspace*{1.5cm}\mbox{}
+  \end{tabular}
+  %\bigskip
+
+  \vspace*{1.5 in}
+
+\begin{center}
+\Huge{{\Huge I}nforme {\Huge N°2}\\}
+\vspace{0.3cm}
+\large{\bf Uso de objetos de string}\\
+\vspace{1cm}
+{\normalsize \textit{Profesor: Mario Medina}}\\[0.2cm]
+{\normalsize \textit{Alumno: Aldo Mellado Opazo}}\\[0.5cm] 
+{\normalsize \textit{31 de agosto de 2018}}
+\end{center}
+
+\vspace{9cm}
+\begin{center}
+\large{Programación Orientada al Objeto}\\
+Ingeniería Civil en Telecomunicaciones
+\end{center}
+\end{titlepage}
+
+
+%-----------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+%
+%\newpage
+%\setcounter{page}{0}
+%\thispagestyle{empty}
+%\tableofcontents
+%
+%
+%%-----------------------------------------------------------------------------------------------
+%%----.------------------------------------------------------------------------------------------
+%%----.------------------------------------------------------------------------------------------
+%\newpage
+%\setcounter{page}{1}
+
+\section{Generando secuencias infinitas}
+
+La secuencia \textit{look and say}, se basa en la comparación, además del conteo, de un elemento previo y otro posterior. Mientras ambos sean iguales, el contador crece. En el caso de que sean diferentes, se anuncia la cantidad de ocurrencias y el número que se estaba contando, así, para la iteración: 
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c|c|c|}
+\cline{2-5}
+$L_{4}$ =& 1&2&1&1\\ \cline{2-5}
+\end{tabular}\vspace{0.2cm}
+%\caption{\textit{Dos unos}}
+\end{table}
+
+se comienza contando el primer elemento, es decir el 1, donde al hacer la comparación entre este y el siguiente elemento, se  tiene que al ser distintos, el primer y segundo elemento de la línea resultante será la cantidad de ocurrencias y el número que se estaba contando:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c|}
+\cline{2-3}
+$L_{5}$ =& 1&1\\ \cline{2-3}
+\end{tabular}\vspace{0.2cm}
+%\caption{Representación de vector resultante}
+\end{table}
+ 
+Luego, se contarán la cantidad de 2 que existen, resultando:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c|c|c|c|}
+\cline{2-5}
+$L_{5}$ =& 1&1&1&2\\ \cline{2-5}
+\end{tabular}\vspace{0.2cm}
+%\caption{Representación de vector resultante}
+\end{table}
+
+Finalmente, dado que el tercer elemento de la iteración $L_{4}$ es igual al cuarto el contador crecerá.\\
+
+Luego, como al llegar al cuarto elemento no existen más valores, se tiene entonces que el vector ha sido recorrido en su totalidad, resultando:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c|c|c|c|c|}
+\cline{2-7}
+$L_{5}$ =& 1&1&1&2&2&1\\ \cline{2-7}
+\end{tabular}\vspace{0.2cm}
+%\caption{Representación de vector resultante}
+\end{table}
+
+
+Dicho esto, se intentó emular la lógica de la resolución del problema, a través de las siguientes líneas de código.\\
+
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=6,lastline=26]{./codes/tarea2v7.cpp}\label{lst:sumofvec}
+
+Mediante el uso de un ciclo for se recorren los elementos almacenados en el vector resultante de la iteración previa, y se evalúan según lo que establece la secuencia look and say, evaluándo elemento a elemento, comparándolos si es que son iguales el elemento actual, con el siguiente, y si es que este último, no corresponde al final del vector a recorrer.\\
+
+\newpage
+
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=27,lastline=33]{./codes/tarea2v7.cpp}\label{lst:sumofvec}
+
+En este caso, la condición a evaluar es que si ya se ha recorrido el vector, entonces se haga un $\texttt{push\_{back(counter)}}$, es decir, se indique cuántas coincidencias hubieron para cuando se recorrió completamente el vector, y además, se hace un $\texttt{push\_{back(*it)}}$, es decir, el valor de lo apuntado por el iterador a la hora de terminar el vector. Finalmente, se reinicia el valor del contador.\\
+
+Un ejemplo de como debería operar la lógica de esto, es que si la secuencia es esta:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c|}
+\cline{2-3}
+$L_{2}$ =& 1&1\\ \cline{2-3}
+\end{tabular}\vspace{0.2cm}
+%\caption{Representación de vector resultante}
+\end{table}
+
+Y es que el primer elemento se compara con el siguiente y como son iguales, avanza, el contador aumenta, es decir, $\texttt{counter=2}$, y como al avanzar el iterador, se encuentra que por la condición que establece el for, se ha llegado al final del vector, entonces se hace un $\texttt{push\_back}$ del contador y del número del cual se estaba buscando coincidencias.\\
+
+Con esto lo que se hace es que la secuencia resultante, es decir.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c|}
+\cline{2-3}
+$L_{3}$ =& 2&1\\ \cline{2-3}
+\end{tabular}\vspace{0.2cm}
+\caption{\textit{Dos unos}}
+\end{table}
+
+\subsection{Problemas}
+
+\begin{enumerate}[$\circ$]
+\item{Aún cuándo en otros intentos el código era capaz de evaluar las condiciones, es decir, de reconocer cuándo había llegado al final o bien, detectado una coincidencia. Sin embargo, para las iteraciones actuales, el código es incapaz de realizar dicha tarea.}
+
+\item{Parte del mismo problema mencionado anteriormente, es que el vector generado, es decir, para la segunda tercera iteración, cuyos valores son 2-1, al entrar en la función, countandsay, esta es incapaz de retener el valor generado de manera tal que la próxima vez que se le llame, parte del vector generado previamente. En mi opinión, es un tema de orden, de saber dónde poner éstas líneas.
+
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=8,lastline=15]{./codes/tarea2v7.cpp}\label{lst:sumofvec}
+
+Puesto que, si bien se hace una copia del vector resultante en la iteración anterior, según lo que se explica en las líneas:
+
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=13,lastline=14]{./codes/tarea2v7.cpp}\label{lst:sumofvec}
+
+Cuando se desea trabajar sobre el vector \texttt{ssal}, este no se traduce como la copia de los valores previos, sino como el resultado de valores actuales obtenidos a partir de las primeras líneas de código.}
+\end{enumerate}
+
+%\begin{thebibliography}{}
+%\bibitem{1} R. Contreras, \textit{}, Taller de Vida Artificial I, Universidad de Concepción, 2018.
+%\bibitem{2} R. Contreras, \textit{},Taller de Vida Artificial I, Universidad de Concepción, 2018.
+%\bibitem{3} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www.cs.us.es/~fsancho/?e=52}
+%\bibitem{4} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www.cs.us.es/~fsancho/?e=72}
+%\bibitem{5} Accedido en octubre de 2018. [En línea]. Disponible en: \url{https://advancedtech.wordpress.com/2008/08/08/redes-neuronales-4/}
+%\bibitem{6} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www.cs.us.es/~fsancho/?e=71}
+%
+%\bibitem{7} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www0.unsl.edu.ar/~dmcc/files/tesis-f.pdf}
+%\bibitem{8} Accedido en octubre de 2018. [En línea]. Disponible en: \url{https://scielo.conicyt.cl/scielo.php?script=sci_arttext&pid=S0718-33052011000200010}
+%\bibitem{9} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://eprints.gla.ac.uk/3894/}
+%
+%\end{thebibliography}
+
+\end{document}

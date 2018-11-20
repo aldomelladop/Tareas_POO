@@ -20,7 +20,7 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage[pdftex]{hyperref}
-%\usepackage{ragged2e}
+\usepackage{ragged2e}
 \hypersetup
 	{
 	bookmarks=true, 
@@ -115,8 +115,7 @@
 \vspace{1cm}
 {\normalsize \textit{Profesor: Mario Medina}}\\[0.2cm]
 {\normalsize \textit{Alumno: Aldo Mellado Opazo}}\\[0.5cm] 
-{\normalsize \textit{24 de septiembre de 2018}}
-\end{center}
+{\normalsize \textit{24 de septiembre de 2018}}\end{center}
 
 \vspace{9cm}
 \begin{center}
@@ -129,32 +128,140 @@ Ingeniería Civil en Telecomunicaciones
 %-----------------------------------------------------------------------------------------------
 %----.------------------------------------------------------------------------------------------
 
-\newpage
-\setcounter{page}{0}
-\thispagestyle{empty}
-\tableofcontents
+\begin{center}
+\Huge{{\Huge I}nforme {\Huge N°1}\\}
+\vspace{0.3cm}
+\large{\bf Estudio de Cobertura}\\
+\vspace{1cm}
+{\normalsize \textit{Profesor: María José Parra}}\\[0.2cm]
+{\normalsize \textit{Alumno: Aldo Mellado Opazo}}\\[0.5cm] 
+{\normalsize \textit{\today}}
+\end{center}
+
+\vspace{9cm}
+\begin{center}
+\large{LTE}\\
+Ingeniería Civil en Telecomunicaciones
+\end{center}
+
+
+
+%-----------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+%
+%\newpage
+%\setcounter{page}{0}
+%\thispagestyle{empty}
+%\tableofcontents
 
 
 %-----------------------------------------------------------------------------------------------
 %----.------------------------------------------------------------------------------------------
 %----.------------------------------------------------------------------------------------------
-\newpage
+%\newpage
 \setcounter{page}{1}
 
-\section{Simulación de eventos discretos}
+\section{Usando los conocimientos adquiridos en las clases de LTE se debería poder obtener el throughput por PRB en uplink en borde de celda y el SNR a emplear.}
 
-Para esta tarea se entregaba un archivo de texto del cuál se nos daban tiempos y prioridades, dichos valores debían ser procesados y con base en ellos, obtenidos otros parámetros y comportamientos de la red o del sistema que se estaba simulando.\\
+Para calcular el número de PRB necesarios, tal que se alcance el requerimiento de throughput en el uplink (UL) que, para efectos del problema se tiene que es de 2.5 Mbps, se debe hacer uso de la tabla que se adjunta en el documento. Este entrega datos sobre el SNR que corresponde para una codificación QPSK 1/3.\\
 
-Había además como objetivo el simular la respuesta ante los distintos métodos que se solicitaba.\\
+Según la tabla, se nos dice que corresponde a 2.4, como señala la imagen.
 
-Para la extracción de los datos, al comienzo consideré la posibilidad de tomarlos y enviarlos usando mapas o pair a vectores, sin embargo, por simplicidad y por optimización usé 
-\texttt{tuple}, que me permitía leer desde un archivo de texto, elementos almacenados en forma de columnas y llevarlos a elementos del tipo \texttt{list<float>}, llamados \textit{tiempo1, tiempo2, priority}, respectivamente.\\
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1]{./imagenes/tabla1}
+\label{fig:1}
+\end{figure}
 
-Lo comentado se halla en las siguientes líneas de código.\\
+Dicho esto, debe considerarse además que la estructura de la trama en UL posee un símbolo menos que la de downlink (DL),puesto que uno de ellos es usado en la demodulación de la reference signal.\\
 
-\framebox{
-\lstset{style=mystyle, language= C++}
-\lstinputlisting[language=C++, firstline=14,lastline=36]{./codes/tarea-4.cpp}
-}
+Con todo esto se tiene que 1 PRB estará compuesto por 6 símbolos (sym), 12 subcarriers (sc) y 2 subtramas [st]. Sin embargo, el cálculo no se remite sólo a esto pues deben considerarse la eficiencia espectral y el paso de $ms$ a $s$. Dicho esto, el cálculo queda como sigue:\\
+
+\begin{align*}
+1 \ PRB &= 6 \ [sym] \cdot{12 \ [sc]}\cdot{2 \ [st]}\cdot{1.5 \ \left[\frac{bit/s}{Hz}\right]}\cdot{\dfrac{1}{0.001}}\\
+&= 216.000 \ bps\\
+\end{align*}
+
+Luego, como nos dicen que del throughput total, el efectivo es corresponde al 70\%, se tiene que de los 216 Kbps, los que se env?an realmente son 151.2 Kbps.\\
+
+Con esto, el cálculo del número de PRBs que se requieren para poder tener un throughput de 2.5 Mbps responde al siguiente cálculo simple:\\
+
+\begin{align*}
+X &= \dfrac{2.5\cdot{10^6}}{151.2\cdot{10^3}}\\
+&= 16.534 \ PRBs
+\end{align*}
+
+Posterior a esto, se nos dice que debemos obtener el link budget a fin de obtener las máximas pérdidas, las cuales se cnsiderarán dentro del modelo Okumura Hata para tener la distancia a la que se produce la mayor pérdida permitida, ya que es con este parámetro que se estima el radio de la celda y por tanto, el número de celdas que se requieren para cubrir toda el área del terreno.\\
+
+\newpage 
+
+\subsection*{Link budget}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Letra &  & UL (valor) \\ \hline
+ & Transmisión &  \\ \hline
+a & Potencia Transmitida (dBm) & 23 \\ \hline
+b & Potencia transmitida en canales de tráfico (dBm) & 0 \\ \hline
+c & Pérdidas en transmisión (dB) & 0 \\ \hline
+d & Pérdidas por cuerpo del usuario (dB) & 0 \\ \hline
+e & Ganancia de antena en transmisión  (dBi) & 0 \\ \hline
+f & PIRE (Potencia Isotrópica Radiada Equivalente) (dBm) & 23 \\ \hline
+\multicolumn{3}{|c|}{Recepción} \\ \hline
+g & Densidad de Ruido térmico (dBm/Hz) & -174 \\ \hline
+h & Figura de ruido (dB) & 5 \\ \hline
+i & Potencia de ruido (dB) & -117.2 \\ \hline
+j & SINR mínima requerida & -1 \\ \hline
+k & Sensibilidad del receptor (dBm) & -118.2 \\ \hline
+l & Margen log-normal (dB) & 7 \\ \hline
+m & Margen de interferencia (dB) & 0.5 \\ \hline
+n & Pérdidas por cuerpo del usuario (dB) & - \\ \hline
+o & Ganancia por diversidad (dB) & 2 \\ \hline
+p & Ganancia de antena en Recepción(dBi) & 15 \\ \hline
+q & Pérdidas por penetración en interiores (dB) & 13.2 \\ \hline
+r & Señal necesaria en Rx &  -80.2\\ \hline
+s & Máximo Path Loss permitido (dB) &  -57.25\\ \hline
+\end{tabular}
+\end{table}
+
+Con estos datos, podemos proceder con el modelo Okumura Hata de la siguiente manera: \\
+
+\begin{itemize}
+\item Potencia transmitida por el móvil = 23 dBm
+\item Figura de ruido del receptor = 5 dB
+\item Ganancia de antena de estación = 15 dBi
+\item Pérdidas en recepciónen estación = 2 dB\\
+Modelo de OKUMURA HATA
+\item Altura del móvil = 1,5 m
+\item Altura media de edificio = 25 m
+\item Pérdidas indoor por banda
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{./imagenes/perdidasinteriores}
+\end{figure}
+\end{itemize}
+
+Dado que se trabajará con la banda de 800 MHz, se consideraron pérdidas interiores de 13.2 dB\\
+
+Entonces, reemplazando los valores previos en el modelo se tiene que: 
+
+\begin{align*}
+L &= 69.55 + 26.16\cdot{log(f)} - 13.82\cdot{h_t} - a(h_m) + (44.9 -6.55\cdot{log(h_t)})\cdot{log(d)}\\
+\end{align*}
+
+Se tiene que $a(h_m)$, corresponde a un factor de correción y depende de la altura del móvil y del tipo de ciudad. Para el caso de la zona entregada en el problema se corresponde a un áre metropolitana de manera que se calcula como sigue:\\
+
+\begin{align*}
+a(h_m) = 3.2\cdot(log(11.75\cdot{h_m})^2-4.97
+\end{align*}
+
+Con esto y los datos previamente entregados se obtiene que lo que debemos obtener desde el modelo, no son las pérdidas, ya que sabemos las máximas pérdidas permitidas y que son aquellas que se obtienen en el borde de celda. Lo que realmente debe calcularse es la distancia y para ello se debe despejar como sigue:
+
+\begin{align*}
+L &= 69.55 + 26.16\cdot{log(f)} - 13.82\cdot{h_t} - a(h_m) + (44.9 -6.55\cdot{log(h_t)})\cdot{log(d)}\\
+&= 69.55 + 26.16\cdot{log(800)} - 13.82\cdot{25} - a(1.5) + (44.9 -6.55\cdot{log(25)})\cdot{log(d)}\\
+\end{align*}
 
 \end{document}

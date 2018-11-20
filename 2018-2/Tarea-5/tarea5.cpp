@@ -1,91 +1,92 @@
 #include <iostream>
-#include <string.h>
 #include <string>
-#include <vector>
+#include <list>
+#include <stdexcept>
+#include <algorithm>    // transform
+#include <functional>   // plus
 
 using namespace std;
 
-class BigInteger
-{
-public:
-		bool signo()
-			{return sign;}
-		string numero()
-			{return number;}
-		void setsigno(bool);
-		void setstring(string);
-private:
-		bool sign;
-		int num; 
-		string str1, number;
-		vector<int> vect;
+class BigInteger {
+	public:
+		void setEntero(){return entero;}
+		int setSigno(unsigned char);
+		list<int> strtovect(string str);
+
+	private:
+		unsigned char signo; // Toma valores -1 o 1
+		int sign = 1;
+		string entero; // Parte entera del BigInteger
 };
 
-/*
-void BigInteger::setsigno(bool s)
-{
-	sign = s;
-}
-*/
-
-vector<int> autotovector(auto autox)
-{
-	vector<int> integer;
-	string number;
-	int numbint,j=0;
-
-	number = to_string(autox);
-	
-	string::iterator it=number.begin();
-
-	for(it;it!=number.end();it++)
+int BigInteger::setSigno(unsigned char s)
 	{
-		int (numbint) = int(*it-48); //Usado para convertir el caracter desde ASCII a Decimal
-		integer.push_back(numbint);
-		j++;
+		signo=s;
 	}
-	cout<<"Cantidad de elementos: "<<j<<endl;
-	return integer;
-}
 
-/*
-vector<int> BigInteger::s_to_int(string number)
+void BigInteger::setEntero(strin g e)
 {
-	num = stoi(numb);
- 	vect = num2vec(num);
- 	return vect;
+	entero=e;
 }
-*/
 
-
-vector<int> num2vec(int value)
+//Función que convierte de string a vector de enteros
+list<int> BigInteger::strtovect(string str)
 {
-   vector<int> num;
-   const int base = 10;
-   int digit = value % base;
+	list<int> list1;
+	int j=0,k=0;
+	string s = str;
+	string::iterator it1 = s.begin();
 
-   if ( value /= base )
-   {
-   	 num2vec(value);
-   }
+	for(it1;it1!=s.end();it1++)
+	{
+		j++;
+		k  = int(*it1-48);
+		
+		if(*it1=='-')
+		{
+			list1.push_back(0);
+			//sign.set(-1);
+		}
 
-   num.push_back(digit); /* Si va anotada acá, es similar a que se aplicara un reverse */
-   
-   return num;
+		else
+		{
+			list1.push_back(k);
+			//sign.set(1);	
+		}
+	}
+	return list1;
 }
+
+void printvect(list<int> v)
+{
+	for(auto x:v)
+	{
+		cout<<x<<" ";
+	}
+}
+
+list<int> sumofvect(list<int> l1,list<int> l2)
+{
+	transform (l1.begin(), l1.end(), l2.begin(), l1.begin(),plus<int>());
+	return l2;
+}
+
 
 int main()
 {
-	vector<int> vec;
-	str c= 5819819819811313314;
-	vec = autotovector(c);
-/*	BigInteger bi;
-	bi.setsigno(0);
-	bi.autotostring(c);
-	vec = bi.num2vec(c);
-	cout<<bi.signo()<<" "<<bi.numero()<<endl;
-*/
-	cout<<"Mostrar elementos vector:";
-	for(auto x:vec){cout<<x<<" ";}
-	return 0;
-}	
+    bool sig;
+    string a,b,d;
+    BigInteger prueba;
+    cout << "Ingrese un número"<< endl;
+    cin>>a;
+
+    prueba.setEntero(a);
+    cout << "el numero es"<<endl;
+    cout << " signo (1 positivo 0 negativo)" << prueba.sign()<<endl;
+    cout << "" << prueba.enter();
+    
+    return 0;
+   
+}
+
+

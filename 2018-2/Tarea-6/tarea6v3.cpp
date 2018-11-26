@@ -21,8 +21,6 @@ class Rotor
         Rotor(){}
         string encripta(const string& p);
         string decripta(const string& p);
-        string rotaRotor(const char& c);
-        void avanzaRotor(void);
 
         Rotor(string p)
         {
@@ -75,21 +73,6 @@ class Rotor
 
 string Rotor::encripta(const string& s)
 {
-    fstream in("MobyDick_Ch01.txt", fstream::in);
-    fstream out("output.txt",fstream::out);
-
-    /// noskipws = Do not skip whitespaces o while (in >> noskipws >> letter)
-    /* hubiera sido util si la funcion encripta lo hiciera sobre un caracter individual
-    sin embargo, como lo hace sobre un string o palabra, la solucion idonea es la siguiente:*/
-    string word;
-    list<string> input;  
-
-    while (in >> word)
-    {
-        word = word + ' '; //adecuado para mostrar que esta recibiendo bien los elementos. No asi para que encripta pueda operar adecuadamente.
-        input.push_back(word);
-    }
-
     string mensaje = s, aux;
     string::iterator it1 = mensaje.begin();
 
@@ -146,28 +129,6 @@ string Rotor::decripta(const string& s)
     return salida;
 }
 
-string Rotor::rotaRotor(const char& c)
-{
-    char x = toupper(c);
-    string aux;
-    string::iterator it,iter2Final;
-    string::iterator iter = clave.begin();
-
-    it =  find(clave.begin(), clave.end(), x);
-    iter2Final = it;
-
-    for(it;it!=clave.end();it++)   
-    {
-        aux.push_back(*it);
-    }
-    for(iter;iter!=iter2Final;iter++)
-    {
-        aux.push_back(*iter);   
-    }
-    
-    return aux;
-}
-
 int main()
 {
     int opcion=2;
@@ -176,18 +137,20 @@ int main()
     string  key;
     key  = "QWERTYUIOPASDFGHJKLZXCVBNM";
     Rotor r1( key);
-/*
-    cout<<"Ingrese un el número que contenga a la operación que desea realizar: "<<endl;
-    cout<<"Ingrese un 0: si desea encriptar"<<endl;
-    cout<<"Ingrese un 1: si desea decriptar"<<endl;
-    cout<<"Ingrese un 2: si desea rotar el rotor"<<endl;
 
-    for(int i=0;i<26;i++){if(i==0 || i==25){cout<<endl;}else{cout<<"-";}}
-    cout<<"\nOpción: ";cin>>opcion;
-*/
     if(opcion==0)
     {
-        list<string> input = ingresatexto();
+        fstream in("MobyDick_Ch01.txt", fstream::in);
+        fstream out("output.txt",fstream::out);
+
+        string word;
+        list<string> input;  
+
+        while (in >> word)
+        {
+            word = word + ' '; //adecuado para mostrar que esta recibiendo bien los elementos. No asi para que encripta pueda operar adecuadamente.
+            input.push_back(word);
+        }
 
         list<string>::iterator it = input.begin();
 
@@ -217,14 +180,6 @@ int main()
             out<< r1.decripta(*it);
         }
         cout<<"\n Desencriptación exitosa"<<endl;
-    }
-    else
-    {
-        string aux = r1.rotaRotor('K');
-        r1(aux);
-
-
-
     }
     return 0;
 }

@@ -13,8 +13,44 @@
 */
 
 using namespace std;
+class Enigma
+{
+    public:
+        Enigma(){};
+        Enigma(pair<char,char> par)
+        {
+            if(par.first=='1')
+            {
+                Rotor r1(rotor1);
+                
+            }
+            else if(par.first=='2')
+            {
+                Rotor r1(rotor2);
+            }
+            else if(par.first=='3')
+            {
+                Rotor r1(rotor3);
+            }
+            else if(par.first=='4')
+            {
+                Rotor r1(rotor4);
+            }
+            else if(par.first=='5')
+            {
+                Rotor r1(rotor5);
+            }
+        }
+    private:
+    ///Van en el private
+    string rotor1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+    string rotor2 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
+    string rotor3 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
+    string rotor4 = "QAZWSXEDCRFVTGBYHNUJMIKOLP";
+    string rotor5 = "HGTYUJMNBCFRIKCDEOLXSWPZAQ";
+};
 
-class Rotor
+class Rotor : public Enigma
     {
         //friend string encripta(const string& p);
     public:
@@ -182,15 +218,20 @@ string Rotor::avanzaRotor()
 int main()
 {
     int opcion;
+    char n1errotor,n2orotor,n3errotor,letra1,letra2,letra3;
     list<string> inputin,inputout;
-    string word;
-    string  key;
-    key  = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    list<pair<char,char>> opciones;
+    string word, key,rotor1,rotor2,rotor3,rotor4,rotor5;
+    
+    ///Van en el private
+    key    = "QWERTYUIOPASDFGHJKLZXCVBNM";
+
     Rotor r1( key);
+
 
     ///Abriendo texto  de entrada
         fstream in("MobyDick_Ch01.txt", fstream::in);
-        fstream out("output.txt",fstream::out);
+        fstream out("/encriptado/output.txt",fstream::out);
 
         /// noskipws = Do not skip whitespaces o while (in >> noskipws >> letter)
         /* hubiera sido util si la funcion encripta lo hiciera sobre un caracter individual
@@ -217,9 +258,29 @@ int main()
 
         list<string>::iterator itout = inputout.begin();
 
+    cout<<"\nEscoja el numero de los rotores a usar: "<<endl;
+    cin>>n1errotor>>n2orotor>>n3errotor;
+    cout<<"Escoja la primera letra de la clave a utilizar para cada rotor: "<<endl;
+    cin>>letra1>>letra2>>letra3;
+    cout<<endl;
+    
+    string numeros = {n1errotor,n2orotor,n3errotor};
+    string letras = {letra1,letra2,letra3};
+    
+    pair<char,char> par1,par2,par3;
+    list<pair<char,char>> mylist ={par1,par2,par3};
+    list<pair<char,char>>::iterator it=mylist.begin();
 
+    for(int i=0;i<numeros.size();i++)
+      { 
+          (*it) = make_pair(letras[i],numeros[i]);
+          cout<<"enigma"<<i<<" ("<<(*it).first<<","<<(*it).second<<")"<<endl;    
+          it++;
+      }
 
-    cout<<"Ingrese el número de la operación que desea realizar: "<<endl;
+    //Enigma e1(opciones[1],opciones[2],opciones[3]);
+
+    cout<<"\nIngrese el número de la operación que desea realizar: "<<endl;
     cout<<"Ingrese un 0: si desea encriptar"<<endl;
     cout<<"Ingrese un 1: si desea decriptar"<<endl;
     cout<<"Ingrese un 2: si desea rotar el rotor"<<endl;

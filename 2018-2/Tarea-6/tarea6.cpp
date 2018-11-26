@@ -12,6 +12,7 @@ class Rotor
     {
     public:
         Rotor(){}
+        string encripta(const string& s);
         Rotor(string p)
         {
             string  clave = p;
@@ -53,29 +54,41 @@ class Rotor
             }
         }
 
+
     private:
         string  clave;
         const string abecedario  = "ABCDEFGHIJLMNOPQRSTUVWXYZ";
         //list<pair<char,char>> salida {make_pair('A','Q'),make_pair('B','W'),make_pair('C','E'),make_pair('D','R'),make_pair('E','T'),make_pair('F','Y'),make_pair('G','U'),make_pair('H','I'),make_pair('I','O'),make_pair('J','P'),make_pair('K','A'),make_pair('L','S'),make_pair('M','D'),make_pair('N','E'),make_pair('F','G'),make_pair('P','H'),make_pair('Q','J'),make_pair('R','K'),make_pair('S','L'),make_pair('T','Z'),make_pair('U','X'),make_pair('V','C'),make_pair('W','V'),make_pair('X','B'),make_pair('Y','N'),make_pair('Z','M')};
-        list<pair<char,char>> codifica;      
+        list<pair<char,char>> codificador;      
     };
-/*
-void Rotor::encripta(const string& p)
+
+string Rotor::encripta(const string& s)
+{
+    string mensaje = s, aux;
+    string::iterator it1 = mensaje.begin();
+
+    for(it1;it1!=mensaje.end();it1++)
+    {
+          aux.push_back(toupper(*it1)); //Aux es el mensaje convertido a mayusculas
+    }
+
+    string salida;
+    string::iterator iter1 = aux.begin(); // Accedo a aux porque el mensaje ya esta en mayusculas
+    map<char,char>::iterator iter2 = codificador.begin();
+
+    for(iter1;iter1!=aux.end();iter1++)
         {
-            //pair<char,char> codificador; //codifica.first entrada () - codifica.second salida
-            list<pair<char,char>> codificador;
-            int largo =  clave.size();
-            string::iterator iter1=p.begin();
-            for(int i=0;i<largo;i++)
-              {
-                codificador.push_back(make_pair(abecedario[i],clave[i]));
-              }
-            for(auto x:codificador)
+            if(codificador.find(*iter1)==codificador.end()) // Hace un push_back de los caracteres no mapeados en rotor e.g: ! , - , etc
             {
-                cout<<"("<<x.first<<","<<x.second<<")"<<endl;
+                salida.push_back(*iter1);
+            }
+            else
+            {
+                salida.push_back(codificador.find(*iter1)->second); // hace push_back de la traducción equivalente segun mapeo de rotor AA = QQ
             }
         }
-*/
+    return salida;
+}
 
 int main()
 {   

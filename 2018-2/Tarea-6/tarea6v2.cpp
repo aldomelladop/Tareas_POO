@@ -22,7 +22,8 @@ class Rotor
         string encripta(const string& p);
         string decripta(const string& p);
         //map<char,char> rotaRotor(const char& c);
-        string rotaRotor(const char& c);
+        //string rotaRotor(const char& c);
+        void rotaRotor(const char& c);
         void avanzaRotor(void);
 
         Rotor(string p)
@@ -75,6 +76,7 @@ class Rotor
 
     private:
         string clave;
+        string claverotada;
         const string abecedario = {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
         map<char,char> codificador;
     };
@@ -138,48 +140,87 @@ string Rotor::decripta(const string& s)
     return salida;
 }
 
-string Rotor::rotaRotor(const char& c)
-{
-    char x = toupper(c);
-    //cout<<x<<endl;
 
-    string aux;
+void Rotor::rotaRotor(const char& c)
+{
+    string aux, aux1;
+    char x = toupper(c);
     string::iterator it=clave.begin();
 
     for(it;it!=clave.end();it++)
     {
-/*        if(*it=x)
+        if (*it==x)
         {
-            for(it;it!=clave.end();it++)
+           cout<<"\t"<<"("<<x<<","<<*it<<")"<<endl;
+            for(it;it==clave.end();it++)
             {
-             //   copy(it,clave.end(),aux.begin());
-             // copy_backward(clave.begin(),it,aux.end());
-                cout<<*it<<" ";
+                aux1.push_back(*it);
             }
         }
         else
         {
-            cout<<"Saliendo";
-            break;
-*/
-        cout<<*it<<" ";
+                cout<<"("<<x<<","<<*it<<")"<<endl;
+                //cout<<"se rompio aquí"<<endl;
+                aux.push_back(*it);
         }
     }
-    cout<<aux;
-    return aux;
+    cout<<"\nImprimiendo aux (if)   : "<<aux<<endl;
+    cout<<"\nImprimiendo aux1 (else): "<<aux1<<endl;
+
 }
 
+/*
+void Rotor::rotaRotor(const char& c)
+{
+    int i = 0;
+    char x = toupper(c);
+    string reves;
+    string::iterator it=clave.begin();
+//    list<char>::iterator it1 = reves.begin();
+    list<char>::iterator it1;
 
+    cout<<"\nImprimiendo clave: "<<clave<<endl;
 
+    for(it;it!=clave.end();it++)
+    {
+        cout<<*it<<endl;
+        i++;
+        if(x==*it)
+        {
+
+                for(it;it!=clave.end();it++)
+                {
+                    reves.push_back(*it);
+                }
+//                it1 = it;
+//                cout<<"se rompio aquí"<<endl;
+//                copy(it, clave.end(), claverotada.end());
+
+/*
+                reverse(clave.begin(),clave.end());
+                cout<<"\nClave: "<<clave<<endl;
+                cout<<"\nClave Rotada: "<<clave<<endl;
+                reverse(claverotada.begin(),claverotada.end());
+                copy(clave.begin(),it1,claverotada.begin());
+
+        }
+    }
+
+    for(auto x:reves)
+    {
+        cout<<x;
+    }
+}
+*/
 int main()
 {
-    int opcion=3;
+    int opcion=2;
     list<string> input;
     string word;
     string  key;
     key  = "QWERTYUIOPASDFGHJKLZXCVBNM";
     Rotor r1( key);
-
+/*
     cout<<"Ingrese un el número que contenga a la operación que desea realizar: "<<endl;
     cout<<"Ingrese un 0: si desea encriptar"<<endl;
     cout<<"Ingrese un 1: si desea decriptar"<<endl;
@@ -187,7 +228,7 @@ int main()
 
     for(int i=0;i<26;i++){if(i==0 || i==25){cout<<endl;}else{cout<<"-";}}
     cout<<"\nOpción: ";cin>>opcion;
-
+*/
     if(opcion==1)
     {
         fstream in("MobyDick_Ch01.txt", fstream::in);

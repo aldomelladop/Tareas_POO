@@ -1,24 +1,23 @@
 //map<char,char> Rotor::rotaRotor(const char& c)
 void Rotor::rotaRotor(const char& c)
 {
-    char x = c;
-    pair<char,char> aux[26];
-    map<char,char>::iterator it = codificador.begin();
+    char x = toupper(c);
+    string aux;
+    string::iterator it,iter2Final;
+    string::iterator iter = clave.begin();
 
-    for(it;it!=codificador.end();it++)
+    it =  find(clave.begin(), clave.end(), x);
+    iter2Final = it;
+
+    for(it;it!=clave.end();it++)   
     {
-        if(codificador.find(x)!=codificador.end())
-            {
-                for(codificador.find(x);it!=codificador.end(),it++)
-                {
-                    aux.insert(*it);
-                }
-                for(codificador.end();it!=codificador.find(x);it--)
-                {
-                    aux.push_front(*it);
-                }
-            }
+        aux.push_back(*it);
     }
+    for(iter;iter!=iter2Final;iter++)
+    {
+        aux.push_back(*iter);   
+    }
+    cout<<aux;
 }
 /*
     char x = c;

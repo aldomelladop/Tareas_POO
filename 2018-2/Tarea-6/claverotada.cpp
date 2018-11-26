@@ -1,7 +1,7 @@
 void Rotor::rotaRotor(const char& c)
 {
     char x = toupper(c);
-    list<char> reves[26];
+    string reves;
     string::iterator it=clave.begin();
     list<char>::iterator it1 = reves.begin();
 

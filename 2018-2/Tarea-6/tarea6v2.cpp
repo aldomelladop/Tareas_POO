@@ -22,7 +22,7 @@ class Rotor
         string encripta(const string& p);
         string decripta(const string& p);
         //map<char,char> rotaRotor(const char& c);
-        void rotaRotor(const char& c);
+        string rotaRotor(const char& c);
         void avanzaRotor(void);
 
         Rotor(string p)
@@ -138,50 +138,37 @@ string Rotor::decripta(const string& s)
     return salida;
 }
 
-//map<char,char> Rotor::rotaRotor(const char& c)
-void Rotor::rotaRotor(const char& c)
+string Rotor::rotaRotor(const char& c)
 {
-    char x = c;
-    pair<char,char> aux[26];
-    map<char,char>::iterator it = codificador.begin();
+    char x = toupper(c);
+    //cout<<x<<endl;
 
-    for(it;it!=codificador.end();it++)
+    string aux;
+    string::iterator it=clave.begin();
+
+    for(it;it!=clave.end();it++)
     {
-        if(codificador.find(x)!=codificador.end())
+/*        if(*it=x)
+        {
+            for(it;it!=clave.end();it++)
             {
-                for(codificador.find(x);it!=codificador.end(),it++)
-                {
-                    aux.insert(*it);
-                }
-                for(codificador.end();it!=codificador.find(x);it--)
-                {
-                    aux.push_front(*it);
-                }
+             //   copy(it,clave.end(),aux.begin());
+             // copy_backward(clave.begin(),it,aux.end());
+                cout<<*it<<" ";
             }
-    }
-}
-/*
-    char x = c;
-    map<char,char> aux[26];
-    map<char,char> aux2=codificador;
-
-    map<char,char>::iterator it = aux2.begin();
-
-    for(aux2.find(x);it!=aux2.end(),it++)
-    {
-        aux.push_back(*it);
-    }
-    for(it;it!=aux2.find(x),it++)
-    {
-        aux.push_back(*it);
-    }
+        }
+        else
+        {
+            cout<<"Saliendo";
+            break;
 */
-
-    //copy(codificador.find(x),codificador.end(),aux.begin());
-    //copy_backward(codificador.begin(),codificador.find(aux),aux1.end());
-    
-//    return aux;   
+        cout<<*it<<" ";
+        }
+    }
+    cout<<aux;
+    return aux;
 }
+
 
 
 int main()
@@ -197,7 +184,7 @@ int main()
     cout<<"Ingrese un 0: si desea encriptar"<<endl;
     cout<<"Ingrese un 1: si desea decriptar"<<endl;
     cout<<"Ingrese un 2: si desea rotar el rotor"<<endl;
-    
+
     for(int i=0;i<26;i++){if(i==0 || i==25){cout<<endl;}else{cout<<"-";}}
     cout<<"\nOpción: ";cin>>opcion;
 
@@ -256,7 +243,7 @@ int main()
         }
         cout<<"\n Desencriptación exitosa"<<endl;
     }
-    else 
+    else
     {
         r1.rotaRotor('K');
     }

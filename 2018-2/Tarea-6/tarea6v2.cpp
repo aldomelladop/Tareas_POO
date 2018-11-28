@@ -13,44 +13,8 @@
 */
 
 using namespace std;
-class Enigma
-{
-    public:
-        Enigma(){};
-        Enigma(pair<char,char> par)
-        {
-            if(par.first=='1')
-            {
-                Rotor r1(rotor1);
-                
-            }
-            else if(par.first=='2')
-            {
-                Rotor r1(rotor2);
-            }
-            else if(par.first=='3')
-            {
-                Rotor r1(rotor3);
-            }
-            else if(par.first=='4')
-            {
-                Rotor r1(rotor4);
-            }
-            else if(par.first=='5')
-            {
-                Rotor r1(rotor5);
-            }
-        }
-    private:
-    ///Van en el private
-    string rotor1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
-    string rotor2 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
-    string rotor3 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
-    string rotor4 = "QAZWSXEDCRFVTGBYHNUJMIKOLP";
-    string rotor5 = "HGTYUJMNBCFRIKCDEOLXSWPZAQ";
-};
 
-class Rotor : public Enigma
+class Rotor
     {
         //friend string encripta(const string& p);
     public:
@@ -106,6 +70,56 @@ class Rotor : public Enigma
         const string abecedario = {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
         map<char,char> codificador;
     };
+
+class Enigma : public Rotor
+{
+    public:
+        Enigma(){};
+        Enigma(list<pair<char,char>> lista)
+        {
+            list<pair<char,char>>::iterator itpar = lista.begin();
+                if(((*itpar).first)=='1')
+                {
+                    primeraclave = rotor1;
+                }
+                else if(((*itpar).first)=='2')
+                {
+                    primeraclave = rotor2;
+                }
+                else if(((*itpar).first)=='3')
+                {
+                    primeraclave = rotor3;
+                }
+                else if(((*itpar).first)=='4')
+                {
+                    primeraclave = rotor4;
+                }
+                else if(((*itpar).first)=='5')
+                {
+                    primeraclave = rotor5;
+                }
+
+            Rotor r1(primeraclave);
+            string clave1rotada = r1.rotaRotor((*itpar).second);
+            itpar++;
+
+            Rotor r2(aux);
+            string clave2rotada = r2.rotaRotor((*itpar).second);
+            itpar++:
+
+        }
+
+    private:
+    ///Van en el private
+    string primeraclave;
+    const string& rotor1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+    const string& rotor2 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
+    const string& rotor3 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
+    const string& rotor4 = "QAZWSXEDCRFVTGBYHNUJMIKOLP";
+    const string& rotor5 = "HGTYUJMNBCFRIKCDEOLXSWPZAQ";
+};
+
+
 
 
 string Rotor::encripta(const string& s)
@@ -278,7 +292,9 @@ int main()
           it++;
       }
 
-    //Enigma e1(opciones[1],opciones[2],opciones[3]);
+    /// Llamando a Enigma 
+
+    Enigma e1(mylist);
 
     cout<<"\nIngrese el número de la operación que desea realizar: "<<endl;
     cout<<"Ingrese un 0: si desea encriptar"<<endl;

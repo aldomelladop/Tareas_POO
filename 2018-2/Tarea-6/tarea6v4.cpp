@@ -19,8 +19,8 @@ class Rotor
         //friend string encripta(const string& p);
     public:
         Rotor(){}
-        string encripta(const string& p);
-        string decripta(const string& p);
+        char encripta(const char& p);
+        char decripta(const char& s);
         string rotaRotor(const char& c);
         string avanzaRotor();
 
@@ -77,6 +77,17 @@ class Enigma : public Rotor
         Enigma(){};
         Enigma(list<pair<char,char>> lista) //(1,'a')
         {
+            //Abriendo texto  de entrada
+            char character;
+            string  inputin,ref_out,output,aux,aux1,aux2;
+            fstream in("test.txt", fstream::in);
+            fstream out("output.txt",fstream::out);
+
+
+            /// noskipws = Do not skip whitespaces o while (in >> noskipws >> letter)
+            /* hubiera sido util si la funcion encripta lo hiciera sobre un caracter individual
+            sin embargo, como lo hace sobre un string o palabra, la solucion idonea es la siguiente:*/
+
             int j=1;
             list<pair<char,char>>::iterator itpar = lista.begin();
 
@@ -108,7 +119,7 @@ class Enigma : public Rotor
                 {
                     Rotor rotor_lento(key);
                     clave1rotada = rotor_lento.rotaRotor((*itpar).second);
-                    cout<<"\nRotor lento: "<<clave1rotada;
+                    cout<<"\nRotor lento:  "<<clave1rotada;
                 }
                 else if(j==2)
                 {
@@ -125,12 +136,96 @@ class Enigma : public Rotor
             j++;
             }
 
+            cout<<"\nAsignación de clave a iteradores"<<endl;
+
+            Rotor rotor_lento(clave1rotada);
+            Rotor rotor_medio(clave2rotada);
+            Rotor rotor_rapido(clave3rotada);
+            Rotor reflector(key_ref);
+
+            /*Comienza la codificacion pasando primero por el rotor rapido. Lo que se hace en primera
+            instancia es leer el archivo que contiene las palabras. */
+
+            cout<<"\nLeyendo archivo de entrada"<<endl;
+            while (in >> noskipws >> character)
+            {
+                inputin.push_back(character);
+            }
+
+            string::iterator itin = inputin.begin();
+
+            cout<<"\nSe procede a codificar por el rotor rapido"<<endl;
+
+            for(itin;itin!=inputin.end();itin++)
+            {
+                aux.push_back(rotor_rapido.encripta(*itin));
+            }
+
+            string::iterator itaux = aux.begin();
+
+            cout<<"Se procede a codificar por el rotor medio"<<endl;
+            for(itaux;itaux!=aux.end();itaux++)
+            {
+                aux1.push_back(rotor_medio.encripta(*itaux));
+            }
+
+            string::iterator itaux1 = aux1.begin();
+
+            cout<<"Se procede a codificar por el rotor lento"<<endl;
+            for(itaux1;itaux1!=aux1.end();itaux1++)
+            {
+                aux2.push_back(rotor_lento.encripta(*itaux1));
+            }
+
+            string::iterator itaux2 = aux2.begin();
+
+            cout<<"Se procede a codificar por el reflector"<<endl;
+
+            for(itaux2;itaux2!=aux2.end();itaux2++)
+            {
+                ref_out.push_back(reflector.encripta(*itaux2));
+            }
+
+            aux.clear(),aux1.clear(),aux2.clear(); //Se reinician las variables, borrando los elementos, esto con la finalidad de poder reutilizarlos en el regreso del codificador.
+
+            string::iterator itref= ref_out.begin();
+
+            cout<<"Se procede a codificar por el rotor lento"<<endl;
+
+            for(itref;itref!=ref_out.end();itref++)
+            {
+                //cout<<*itref;
+                aux2.push_back(rotor_lento.decripta(*itref));
+            }
+
+            itaux2 = aux2.begin();
+
+            cout<<"Se procede a codificar por el rotor mediano"<<endl;
+
+            for(itaux2;itaux2!=aux2.end();itaux2++)
+            {
+                aux1.push_back(rotor_medio.decripta(*itaux2));
+            }
+
+            itaux1 = aux1.begin();
+
+            cout<<"Se procede a codificar por el rotor rapido"<<endl;
+
+            for(itaux1;itaux1!=aux1.end();itaux1++)
+            {
+                aux.push_back(rotor_rapido.decripta(*itaux1));
+            }
+
+            for(auto x:aux)
+            {
+                out<<x;
+            }
         }
 
     private:
     ///Van en el private
-    string key,clave1rotada,clave2rotada,clave3rotada;
-    const string& reflector = "IXUHFEZDAOMTKQJWNSRLCYPBVG";
+    string key,clave3rotada,clave2rotada,clave1rotada;
+    const string& key_ref   = "IXUHFEZDAOMTKQJWNSRLCYPBVG";
     const string& rotor1    = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
     const string& rotor2    = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
     const string& rotor3    = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
@@ -138,35 +233,25 @@ class Enigma : public Rotor
     const string& rotor5    = "HGTYUJMNBCFRIKCDEOLXSWPZAQ";
 };
 
-string Rotor::encripta(const string& s)
+char Rotor::encripta(const char& p)
 {
-    string mensaje = s, aux;
-    string::iterator it1 = mensaje.begin();
+    char aux,salida,mensaje = p; //a
+    aux = toupper(mensaje); // A
 
-    for(it1;it1!=mensaje.end();it1++)
-    {
-          aux.push_back(toupper(*it1)); //Aux es el mensaje convertido a mayusculas
-    }
-
-    string salida;
-    string::iterator iter1 = aux.begin(); // Accedo a aux porque el mensaje ya esta en mayusculas
     map<char,char>::iterator iter2 = codificador.begin();
 
-    for(iter1;iter1!=aux.end();iter1++)
+    if(codificador.find(aux)==codificador.end()) // Hace un push_back de los caracteres no mapeados en rotor e.g: ! , - , etc
         {
-            if(codificador.find(*iter1)==codificador.end()) // Hace un push_back de los caracteres no mapeados en rotor e.g: ! , - , etc
-            {
-                salida.push_back(*iter1);
-            }
-            else
-            {
-                salida.push_back(codificador.find(*iter1)->second); // hace push_back de la traducción equivalente segun mapeo de rotor AA = QQ
-            }
+            salida  = aux;
+        }
+    else
+        {
+            salida = codificador.find(aux)->second;; // busca la traducción equivalente segun mapeo de rotor AA = QQ
         }
     return salida;
 }
 
-string Rotor::decripta(const string& s)
+char Rotor::decripta(const char& s)
 {
     map<char,char> decodificador;
     map<char,char>::iterator i = codificador.begin();
@@ -176,23 +261,17 @@ string Rotor::decripta(const string& s)
         decodificador.insert(make_pair(i->second,i->first));
     }
 
-    string mensaje = s;
-    string::iterator it1 = mensaje.begin();
+    char aux = s,salida;
 
-    string salida;
-    map<char,char>::iterator iter2 = decodificador.begin();
-
-    for(it1;it1!=mensaje.end();it1++)
+    if(decodificador.find(aux)==decodificador.end()) // Hace un push_back de los caracteres no mapeados en rotor e.g: ! , - , etc
         {
-            if(decodificador.find(*it1)==decodificador.end()) // Hace un push_back de los caracteres no mapeados en rotor e.g: ! , - , etc
-            {
-                salida.push_back(*it1);
-            }
-            else
-            {
-                salida.push_back(decodificador.find(*it1)->second); // hace push_back de la traducción equivalente segun mapeo de rotor AA = QQ
-            }
+            salida  = aux;
         }
+    else
+        {
+            salida = decodificador.find(aux)->second;; // busca la traducción equivalente segun mapeo de rotor AA = QQ
+        }
+
     return salida;
 }
 
@@ -247,40 +326,7 @@ string Rotor::avanzaRotor()
 
 int main()
 {
-    int opcion;
     char n1errotor,n2orotor,n3errotor,letra1,letra2,letra3;
-    list<string> inputin,inputout;
-    list<pair<char,char>> opciones;
-    string word, key,rotor1,rotor2,rotor3,rotor4,rotor5;
-
-    //Abriendo texto  de entrada
-
-        fstream in("MobyDick_Ch01.txt", fstream::in); ///RECORDAR QUE CAMBIE EL NOMBRE
-        fstream out("output.txt",fstream::out);
-
-        /// noskipws = Do not skip whitespaces o while (in >> noskipws >> letter)
-        /* hubiera sido util si la funcion encripta lo hiciera sobre un caracter individual
-        sin embargo, como lo hace sobre un string o palabra, la solucion idonea es la siguiente:*/
-
-        while (in >> word)
-        {
-            word = word + ' '; //adecuado para mostrar que esta recibiendo bien los elementos. No asi para que encripta pueda operar adecuadamente.
-            inputin.push_back(word);
-        }
-
-        list<string>::iterator itin = inputin.begin();
-
-    //Abriendo texto de salida
-        fstream in1("output.txt", fstream::in);
-        fstream out1("desencripta.txt",fstream::out);
-
-        while (in >> word)
-        {
-            //word = word + ' '; //adecuado para mostrar que esta recibiendo bien los elementos. No asi para que encripta pueda operar adecuadamente.
-            inputout.push_back(word);
-        }
-
-        list<string>::iterator itout = inputout.begin();
 
     cout<<"\nEscoja el numero de los rotores a usar: "<<endl;
     cin>>n1errotor>>n2orotor>>n3errotor;
@@ -306,75 +352,5 @@ int main()
 
     Enigma e1(mylist);
 
-        key = "QWERTYUIOPASDFGHJKLZXCVBNM";
-
-        Rotor r1(key);
-        cout<<"\nIngrese el número de la operación que desea realizar: "<<endl;
-        cout<<"Ingrese un 0: si desea encriptar"<<endl;
-        cout<<"Ingrese un 1: si desea decriptar"<<endl;
-        cout<<"Ingrese un 2: si desea rotar el rotor"<<endl;
-        cout<<"Ingrese un 3: si desea avanzar el rotor"<<endl;
-
-        for(int i=0;i<26;i++){if(i==0 || i==25){cout<<endl;}else{cout<<"-";}}
-        cout<<"\nOpción: ";cin>>opcion;
-
-        switch(opcion)
-        {
-
-            case(0):
-
-           {
-                for(itin;itin!=inputin.end();itin++)
-                {
-                    cout<< *itin; //Despliega la encriptación del texto ingresado
-                    out<< r1.encripta(*itin);
-                }
-                cout<<"\n Encriptación exitosa"<<endl;
-                break;
-            }
-            case(1):
-            {
-                for(itout;itout!=inputout.end();itout++)
-                {
-                    //cout<< r1.encripta(*it); //Despliega la encriptación del texto ingresado
-                    out<< r1.decripta(*itout);
-                }
-                cout<<"\n Desencriptación exitosa"<<endl;
-                break;
-            }
-            case(2):
-            {
-                char x;
-                cout<<"\nIngrese la primera letra de su clave: ";
-                cin>>x;
-                x = toupper(x);
-
-                string aux = r1.rotaRotor(x);
-                cout<<aux;
-
-                Rotor r2(aux);
-
-                for(itin;itin!=inputin.end();itin++)
-                {
-                    //cout<< r1.encripta(*it); //Despliega la encriptación del texto ingresado
-                    out<< r2.encripta(*itin);
-                }
-                cout<<"\n Encriptación exitosa"<<endl;
-                break;
-            }
-            case(3):
-            {
-
-                Rotor r2(r1.avanzaRotor());
-
-                for(itin;itin!=inputin.end();itin++)
-                {
-                    //cout<< r1.encripta(*it); //Despliega la encriptación del texto ingresado
-                    out<< r2.encripta(*itin);
-                }
-                cout<<"\n Encriptación exitosa"<<endl;
-                break;
-            }
-        }
     return 0;
 }

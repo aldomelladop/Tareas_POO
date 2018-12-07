@@ -22,7 +22,8 @@ class Rotor
         string encripta(const string& p);
         string decripta(const string& p);
         string rotaRotor(const char& c);
-        string avanzaRotor();
+        string avanzaClave();
+        void avanzaRotor(Rotor rotorejemplo(string claveejemplo),string claverotor);
 
         Rotor(string p)
         {
@@ -66,7 +67,7 @@ class Rotor
         }
 
     private:
-        string clave;
+        string clave,claverotada;
         const string abecedario = {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
         map<char,char> codificador;
     };
@@ -218,7 +219,7 @@ string Rotor::rotaRotor(const char& c)
     return aux;
 }
 
-string Rotor::avanzaRotor()
+string Rotor::avanzaClave()
 {
     list<char> aux;
     string aux1;
@@ -242,7 +243,17 @@ string Rotor::avanzaRotor()
     {
         clave.push_back(x);
     }
-    return clave;
+    return claverotada;
+}
+
+void Rotor::avanzaRotor(Rotor rotorAavanzar(string algo),string algo)
+{
+    string aux=algo;
+    Rotor rotorsalida(),rotorauxiliar(aux);
+
+    claverotada = rotorauxiliar.avanzaClave();
+
+    rotorAavanzar(claverotada);
 }
 
 int main()

@@ -1,4 +1,4 @@
-T#include <iostream>
+#include <iostream>
 #include <stdexcept>    // Domain_error
 #include <algorithm>    // std::sort
 #include <string>       // std::string
@@ -25,8 +25,14 @@ class Rotor
         char encripta(const char& p);
         char decripta(const char& s);
         string rotaRotor(const char& c);
-        string avanzaRotor();
 
+        /*Las funciones miembro, avanzaRotor(), así como avanzaClave(), son funciones que mediante el uso de getClave(), y setClave(), podrían ser usadas
+        para cambiar el valor de la claveRotada resultante de la rotación (c/26 crr (crr= contador Rotor rapido) ó c/676 crm (crm = contador rotor medio)), 
+        con ello se podría hacer variar el string contenido  */
+        
+        string avanzarRotor();
+        string avanzaRotor(); //corresponde a un void puesto que modificaría el valor contenido sin llegar a retornada
+        string avanzaClave();
         Rotor(string p)
         {
             string  key = p;
@@ -68,7 +74,7 @@ class Rotor
         }
 
     private:
-        string clave;
+        string clave,claverotada;
         const string abecedario = {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
         map<char,char> codificador;
     };
@@ -77,13 +83,15 @@ class Enigma : public Rotor
 {
     public:
         Enigma(){};
+        void getClave(string input);
+        string setClave(string entrada);
         void convierte();
         Enigma(list<pair<char,char>> lista) //(1,'a')
         {
             //Abriendo texto  de entrada
             char character;
             string  inputin,ref_out,output,aux,aux1,aux2;
-            fstream in("test.txt", fstream::in);
+            fstream in("MobyDick_Ch01.txt", fstream::in);
             fstream out("output.txt",fstream::out);
 
 
@@ -172,7 +180,7 @@ class Enigma : public Rotor
             string::iterator itaux = aux.begin();
 
             cout<<"Se procede a codificar por el rotor medio"<<endl;
-
+/*
             for(itaux;itaux!=aux.end();itaux++)
             {
                 if(crr%26!=0)
@@ -181,20 +189,37 @@ class Enigma : public Rotor
                 }
                 else
                 {
-                    clave2rotada = rotor_medio.avanzaRotor();
-        
+                    rotor_medio.avanzaRotor();
                     aux1.push_back(rotor_medio.encripta(*itaux));
                 }
+            }
+*/
+            for(itaux;itaux!=aux.end();itaux++)
+            {
+                aux1.push_back(rotor_medio.encripta(*itaux)); 
             }
 
             cout<<"Se procede a codificar por el rotor lento"<<endl;
             string::iterator itaux1 = aux1.begin();
 
-
             for(itaux1;itaux1!=aux1.end();itaux1++)
             {
                 aux2.push_back(rotor_lento.encripta(*itaux1));
             }
+/*
+            for(itaux;itaux!=aux.end();itaux++)
+            {
+                if(crm%676!=0)
+                {
+                aux.push_back(rotor_medio.encripta(*itaux));
+                }
+                else
+                {
+                    rotor_medio.avanzaRotor();
+                    aux.push_back(rotor_medio.encripta(*itaux));
+                }
+            }
+*/
 
             string::iterator itaux2 = aux2.begin();
 
@@ -245,7 +270,7 @@ class Enigma : public Rotor
     //crr  = contador rotor rapido
     //crm  = contador rotor medio
     int crr,crm;
-    string key,clave3rotada,clave2rotada,clave1rotada;
+    string key,var_aux,clave3rotada,clave2rotada,clave1rotada,claverotada;
     const string& key_ref   = "IXUHFEZDAOMTKQJWNSRLCYPBVG";
     const string& rotor1    = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
     const string& rotor2    = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
@@ -253,6 +278,16 @@ class Enigma : public Rotor
     const string& rotor4    = "QAZWSXEDCRFVTGBYHNUJMIKOLP";
     const string& rotor5    = "HGTYUJMNBCFRIKCDEOLXSWPZAQ";
 };
+
+void Enigma::getClave(string claverotada)
+{
+    var_aux = claverotada;
+}
+
+string Enigma::setClave(string entrada)
+{
+    return claverotada;
+}
 
 char Rotor::encripta(const char& p)
 {
@@ -267,7 +302,7 @@ char Rotor::encripta(const char& p)
         }
     else
         {
-            salida = codificador.find(aux)->second;; // busca la traducción equivalente segun mapeo de rotor AA = QQ
+            salida = codificador.find(aux)->second; // busca la traduccion equivalente segun mapeo de rotor AA = QQ
         }
     return salida;
 }
@@ -318,7 +353,7 @@ string Rotor::rotaRotor(const char& c)
     return aux;
 }
 
-string Rotor::avanzaRotor()
+string Rotor::avanzarRotor()
 {
     list<char> aux;
     string aux1;
@@ -344,6 +379,46 @@ string Rotor::avanzaRotor()
     }
     return clave;
 }
+
+string Rotor::avanzaClave()
+{
+    list<char> aux;
+    string aux1;
+    string::iterator iter = clave.begin();
+
+    for(iter;iter!=clave.end();iter++)
+    {
+        if(iter!=clave.end())
+        {
+            aux.push_front(*iter);
+        }
+        else
+        {
+            aux.push_back(*clave.begin());
+        }
+    }
+
+    clave.clear();
+
+    for(auto x:aux)
+    {
+        clave.push_back(x);
+    }
+    return claverotada;
+}
+
+
+
+/*string Rotor::avanzaRotor(Rotor rotor_medio)
+{
+
+    string clave2rotada;
+    clave2rotada=rotor_medio.getClave();
+    claverotada = rotorauxiliar.avanzaClave();
+
+    rotorAavanzar(claverotada);
+}
+*/
 
 int main()
 {

@@ -1,0 +1,214 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{longtable}
+\usepackage{enumerate}
+\usepackage{ucs}
+\usepackage{multirow}  %%INSTALAR ESTE PAQUETE!!!
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[right=2.2cm,left=2.2cm,top=2.2cm,bottom=2.2cm,headsep=1.2cm,footskip=1.2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{fancybox} 
+\usepackage{graphicx,tabularx,latexsym}
+\usepackage{amsthm,amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{tabulary}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[pdftex]{hyperref}
+%\usepackage{ragged2e}
+\hypersetup
+	{
+	bookmarks=true, 
+	unicode=true,
+	pdftitle= Tarea N°6 , 
+	pdfauthor="{Aldo Mellado Opazo}", 
+	pdfsubject= Programación Orientada al Objeto, 
+	pdfnewwindow=true, 
+	colorlinks=true, 
+	linkcolor=black,
+        linktocpage,
+            linkcolor=blue,
+            anchorcolor=red,
+            citecolor=green,
+            filecolor=blue,
+            menucolor=blue,
+            pagecolor=blue,
+            urlcolor=blue,
+	urlcolor=blue  
+	}
+
+\makeindex
+\def\figcapskip{1pt}
+\def\figtopskip{1pt}
+\def\figbottomskip{1pt}
+\def\figcapmargin{1pt}
+\def\figfarskip{1pt}
+
+
+\pagestyle{fancy}
+ \lhead{Tarea N°6} 
+ \rhead{{Programación Orientada al Objeto}} 
+ \lfoot{}
+ \cfoot{}
+ \rfoot{\thepage} 
+
+% ***********************************************************************************
+\begin{document}
+
+
+
+\renewcommand{\figurename}{\textbf{Fig.}}
+\renewcommand{\tablename}{\textbf{Tabla}}
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\fontsize{7}{9}\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+% *************************************************************************************
+
+\begin{titlepage}
+\hspace{-1cm} \includegraphics[width=1.5cm]{./imagenes/logo.png}
+  \begin{tabular}{l}
+  \begin{small} \sc Departamento de Ingeniería Eléctrica \end{small}\\
+ \begin{small} \sc Facultad de Ingeniería \end{small}\\  
+ \begin{small} \sc Universidad de Concepción \end{small}\\ 
+ \begin{small} \sc Concepción, Chile. \end{small}\\                 
+
+  \vspace*{1.5cm}\mbox{}
+  \end{tabular}
+  %\bigskip
+
+  \vspace*{1.5 in}
+
+\begin{center}
+\Huge{{\Huge I}nforme {\Huge N°6}\\}
+\vspace{0.3cm}
+\large{\bf Máquina Enigma}\\
+\vspace{1cm}
+{\normalsize \textit{Profesor: Mario Medina}}\\[0.2cm]
+{\normalsize \textit{Alumno: Aldo Mellado Opazo}}\\[0.5cm] 
+{\normalsize \textit{\today}}
+\end{center}
+
+\vspace{9cm}
+\begin{center}
+\large{Programación Orientada al Objeto}\\
+Ingeniería Civil en Telecomunicaciones
+\end{center}
+\end{titlepage}
+
+
+%-----------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+%
+%\newpage
+%\setcounter{page}{0}
+%\thispagestyle{empty}
+%\tableofcontents
+
+
+%-----------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+%----.------------------------------------------------------------------------------------------
+\newpage
+\setcounter{page}{1}
+
+\section{Sobre el Código Enigma}
+Dado que el problema se presenta como una máquina cuyo objetivo era el de que, mediante el uso de 5 rotore distintos, de los cuales el usuario escogía 3, seleccionando además las letras con las cuales empezaba cada rotor, se debía presentar un menú a través del cual el usuario escogiera.\\
+
+Paso siguiente, el problema pide que la codificación (o decodificación), se haga a través del paso del texto, caracter por caracter, por los tres rotores, de los cuales ya identificamos como rotor rápido, medio y lento. Luego de esto, pasaba por el reflector, y entonces, por el rotor lento, medio y rápido respectivamente.\\
+
+Se debían hacer salvedades tales como que el rotor lento rotara 1 vez por cada 676 que hacía el rotor rápido, a la vez que el rotor mediano rotaba 1 vez cada 26 que hacía el rápido.\\
+
+\subsection{Problemas}
+Por practicidad, evaluaré los problemas de manera tal que abordaré los problemas presentados al comienzo, hasta llegar a los del final. Habiendo dicho esto, 
+\begin{enumerate}
+
+\item{\textbf{\texttt{while(flag!=1)}:} Dado que el usuario debe elegir los rotores a usar, existe también la posibilidad de que el usuario escoja, erronea o intencionalmente un mismo rotor dos veces, por ello, debía considerarse dicha salvedad para el número de los rotores, así como para la letra desde la que se rota el rotor.\\}
+
+\item{\textbf{\texttt{convertir()}}: El problema pedía que esta fuese una función miembro de la clase Enigma, sin embargo, debido al problema que se detalla en el punto 2, no fue posible.}
+
+\item{\textbf{\texttt{string avanzaRotor():}} El problema dentro de esto, es que la función avanzaRotor, presentada a continuación:
+
+\lstset{style=mystyle, language = C++}
+\lstinputlisting[language = C++,firstline = 356, lastline =382] {./codes/tarea6v6.cpp}
+
+En la forma en que la pensé originalmente, era que entregara la clave del rotor avanzada, y así, que esta fuera introducida en un nuevo rotor que sería el rotor de la clave avanzada. Sin embargo, luego se me hizo el alcance de que en realidad lo que debería retornar era un rotor con la clave rotada en vez de la clave rotada.\\
+
+Esto ciertamente trajo problemas a la hora de avanzar el rotor conforme se introducían los caracteres y se verificaban las condiciones; \texttt{crr\%26} y \texttt{crr\%676}. Dicho problema se manifesto mediante no poder reutilizar el rotor con la clave rotada.\\
+
+Esto a su vez ocasionó que no pudiera rotarse el rotor cuando, luego de pasar por el reflector, siguiera haciendo el conteo, que según entendí, debía seguir avanzando conforme los caracteres pasaban por los rotores.}
+
+\item{\textbf{\texttt{encripta(const string\& p):}} El problema de esta función, fue que al comienzo, la pensé para que encriptara palabra por palabra, sin embargo, dado que la función más adelante serviría para codificar letra por letra, debía entonces ser repensada y reacondicionada para recibir \texttt{char}}
+
+\item{\textbf{\texttt{string avanzaClave()}:} También una cosa que se pensó fue hacer avanzar la clave, retornar una clave rotada y luego, introducirla a una función que retornara un rotor nuevo, que usara la clave del rotor anterior, pero esta vez rotada, sin embargo, no se logró retornar un rotor.}
+
+\item{\textbf{Sobre el abecedario y caracteres especiales:} Se tiene que el texto a codificar, dada que se trata de uno de narrativa, y no de simples números o simples letras, cuenta además con caracteres especiales, signos de interrogación, exclamación y guiones que le dan coherencia al texto, que sí o sí debían traspasarse. Por lo que debía hacerse la salvedad para con estos.}
+\end{enumerate}
+
+\subsection{Soluciones}
+\begin{enumerate}
+
+\item{\textbf{\texttt{while(flag!=1)}:} A modo de evitar que el usuario pudiera cometer este error, propuse que evaluase los valores introducidos de la siguiente manera: 
+
+\lstset{style=mystyle, language = C++}
+\lstinputlisting[language = C++,firstline = 445, lastline =460] {./codes/tarea6v6.cpp}
+
+De este modo, tanto si introduce el mismo número de rotor, así como de letras, el usuario podrá enmendar su error y optar a codificar el texto.}
+
+\item{\textbf{\texttt{convertir()}}: Ciertamente la solución a convertir pudo haber sido el declararla como función miembro de Enigma y que esta hiciera las de desplegar el texto donde se señala que los rotores escogidos fueron los ingresados, que la codificación pasó por los rotores rapido, medio, lento, reflector, lento, medio y rapido respectivamente.}
+
+\item{\textbf{\texttt{char encripta(const char\& p):}} Para solucionar el problema, se reacondicionaron, tanto el funcionamiento de la función, así como los parametros que este recibe y retorna, de modo que resultó lo siguiente:
+
+
+\lstset{style=mystyle, language = C++}
+\lstinputlisting[language = C++,firstline = 292, lastline =308] {./codes/tarea6v6.cpp}
+}
+
+\item{\textbf{\texttt{string avanzaClave()}:} Para hacer avanzar la clave se pensó hacer uso de las funciones get(), and set(), donde estas fueran funciones miembro de la clase Enigma, sin embargo, por desconocimiento del uso.}
+
+\item{\textbf{Sobre el abecedario y caracteres especiales:} Se implementó la siguiente solución al problema señalado.
+
+\lstset{style=mystyle, language = C++}
+\lstinputlisting[language = C++,firstline = 299, lastline =306] {./codes/tarea6v6.cpp}
+
+En ella se aprecia que mediante el uso de la función \texttt{.find()}, se hacía que, por funcionamiento de esta, si dentro de \texttt{codificador}, no se hallaba ningún elemento que coincidiera con los que este contenía, retornaba una posición al final de este, esto se ve en la línea: 
+
+\texttt{if(codificador.find(aux)==codificador.end())}
+
+Finalmente, si es que encontraba el caracter deseado, lo retornaba a salida, apuntando la equivalencia del símbolo 
+encontrado a un char llamado \texttt{salida}.}
+
+\end{enumerate}
+
+\subsection{Resultados}
+
+\end{document}

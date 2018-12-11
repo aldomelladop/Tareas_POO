@@ -297,7 +297,7 @@ char Rotor::encripta(const char& p)
     map<char,char>::iterator iter2 = codificador.begin();
 
     if(codificador.find(aux)==codificador.end()) // Hace un push_back de los caracteres no mapeados en rotor e.g: ! , - , etc
-        {
+        {   
             salida  = aux;
         }
     else

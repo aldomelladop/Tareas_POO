@@ -196,14 +196,11 @@ Al igual que en la función suma, se consideran aspectos de orden y largo, es dec
 \lstset{style=mystyle, language= C++}
 \lstinputlisting[language=C++, firstline=89,lastline=92]{./codes/tarea1.cpp}
 }
-\item{\textbf{Función}: En el caso de esta función, se tiene que al realizar el producto pero no arrastrar a la suma el resultado, no continúa en los valores siguientes. Por ejemplo, si el producto es 9*2 = 18, hace \texttt{push_\back(8), mas no hace la suma entre el resultado del producto de los siguientes números y el carry de la multiplicación previa, si lo hubiera. Que para efectos de este ejemplo, sería 1.\\
+\item{\textbf{Función}: En el caso de esta función, se tiene que al realizar el producto pero no arrastrar a la suma el resultado, no continúa en los valores siguientes. Por ejemplo, si el producto es 9*2 = 18, hace \texttt{push\_ back(8)}, mas no hace la suma entre el resultado del producto de los siguientes números y el carry de la multiplicación previa, si lo hubiera. Que para efectos de este ejemplo, sería 1.\\
 
 El problema podría eventualmente ser resulto si se enlaza la función \texttt{prodofvect} con la función \texttt{sumofvect}.
 }
 
-\begin{equation}
-\end{equation}
-}
 \end{enumerate}
 
 %\begin{lstlisting}

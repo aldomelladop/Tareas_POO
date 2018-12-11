@@ -1,0 +1,121 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf820
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 #include <iostream>\
+#include <string>\
+#include <list>\
+//#include <utility>\
+#include <fstream> \
+#include <queue>\
+\
+\
+using namespace std;\
+\
+void imprime_pair(list<pair<float,float>> &tiempos)//funcion para poder imprimir pair\
+\{\
+	list<pair<float,float>>::iterator iter=tiempos.begin();\
+	for(iter=tiempos.begin();iter!=tiempos.end();++iter)\
+	\{\
+	cout<<"Pair ("<<iter->first<<", "<<iter->second<<")"<<endl;	\
+	\}\
+\
+	//pair<float,float> x=espera.front();\
+	//cout<<"(Main) El el primer elemento es: "<<x.first<<endl;\
+\}\
+\
+void imprime_cola(queue<pair<float,float>> &espera)//funcion para poder imprimir cola\
+\{\
+	//pair<float,float> h=espera.front();\
+	//cout<<"El dato que entro en la cola es: "<<espera.size()<<endl;//<<", "<<h.second<<endl;\
+\
+\}\
+\
+void meter_a_la_cola(list<pair<float,float>> &tiempos, queue<pair<float,float>> &espera,float &tt,float &x,float &y,list<float> &ociosa)\
+\{\
+	if(tt>x || tt==x)\{espera.push(make_pair(x,y));\}\
+	if(tt<x)\
+\{\
+	espera.push(make_pair(x,y));\
+	ociosa.push_back(x-tt);\}\
+\}\
+\
+void cpu(list<pair<float,float>> &tiempos, queue<pair<float,float>> &espera,float &tt, list<pair<float,float>> &segundos)\
+\{\
+	pair<float,float> x=espera.front();\
+	float ts=x.second;\
+	float tw;\
+	if(tt<x.first)\{tt=x.first;\}\
+	if(tt==x.first)\{tw=0;\}\
+	if(tt!=x.first)\{tw=tt-x.first;\}\
+	tt=tt+ts;\
+	segundos.push_back(make_pair(ts,tw));\
+	pair<float,float> x2=espera.front();\
+	//cout<<"(CPU-in) El el primer elemento es: "<<x2.first<<endl;\
+	espera.pop();\
+\
+\}\
+\
+int main()\
+\{	\
+	ifstream entrada("eventos.dat"); //texto con los mil procesos.\
+	list<pair<float,float>> tiempos;\
+	list<pair<float,float>> segundos;\
+	list<float> tiempo_total;\
+	list<float> ociosa;\
+	queue<pair<float,float>> espera;\
+\
+	float n,n2,tt;\
+	while(entrada >> n >> n2)\
+	\{\
+		tiempos.push_back(make_pair(n,n2));\
+	\}\
+	entrada.close();\
+	\
+	list<pair<float,float>>::iterator iter=tiempos.begin();\
+	tt=iter->first;\
+	list<pair<float,float>>::iterator it=tiempos.begin();\
+	list<float>::iterator i2=tiempo_total.begin();\
+	segundos.push_back(make_pair(0,0));\
+	list<pair<float,float>>::iterator i1=segundos.begin();\
+	int stop=tiempos.size();\
+\
+	while(tiempo_total.size()!=stop)\
+\{	\
+	float x=it->first;\
+	float y=it->second;\
+	//cout<<"Pares procesados: "<<x<<" "<<y<<endl;\
+	if(x!=0)\{meter_a_la_cola(tiempos,espera,tt,x,y,ociosa);++it;\}\
+	//imprime_cola(espera);\
+	float test=it->first;\
+	//if(tt>test || tt==test)\{n++;\}\
+	\
+	if(tt<=test || test==0)\
+\{	\
+\
+	//cout<<"Procesos esperando en la cola: "<<espera.size()<<endl;\
+	cpu(tiempos,espera,tt,segundos);\
+	tiempo_total.push_back(tt);\
+	++i1;++i2;\
+	pair<float,float> x3=espera.front();\
+	//cout<<"(CPU-out) El el primer elemento es: "<<x3.first<<endl;\
+	//cout<<"(TS) Duracion del evento: "<<i1->first<<endl;\
+	//cout<<"(TW) Tiempo espera en cola: "<<i1->second<<endl;\
+	//cout<<"(TT) Tiempo total: "<<*i2<<endl;\
+	//cout<<"-----------------------------------------"<<endl;\
+	tiempos.push_back(make_pair(0,0));\
+\}\
+\}\
+	float cpu_ociosa=0;\
+	float ttf=*i2;	\
+	for(int i:ociosa)\
+	\{cpu_ociosa=cpu_ociosa+i;\}\
+	cout<<"(TT) Tiempo total: "<<ttf<<endl;\
+	cout<<"La CPU estuvo ociosa "<<cpu_ociosa<<" segundos"<<endl;\
+	float porcentaje=100-(cpu_ociosa/ttf*100);\
+	cout<<"La CPU se uso durante el "<<porcentaje<<"% del tiempo"<<endl;\
+	return 0;\
+\}}

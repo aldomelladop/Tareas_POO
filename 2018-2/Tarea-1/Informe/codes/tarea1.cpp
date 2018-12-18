@@ -52,6 +52,13 @@ int main()
     int n;
     cout<<"\nIngrese el número del cual desea calcular el factorial: ";
     cin>>n;
+
+    while(n<0)
+    {
+      cout<<"El factorial no está definido para números negativos, intente nuevamente: ";
+      cin>>n;
+    }
+
     factorial(n);
 
     return 0;

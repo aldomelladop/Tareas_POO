@@ -3,6 +3,14 @@
 #include <string>
 #include <algorithm>
 
+///  1
+///  1 1
+///  2 1
+///  1 2 1 1
+///  1 1 1 2 2 1
+///  3 1 2 2 1 1
+///  1 3 1 1 2 2 2 1
+
 using namespace std;
 
 void despliegaSecuencia(vector<int>secuencia);
@@ -31,9 +39,6 @@ vector<int>countandSay(vector<int> look, int n)
             counter=1;
         }
     }
-     /*la finalidad de este vector era que se pudiera almacenar una copia de los valores que se empujaron al vector
-    es decir, 21 en el caso de la tercera iteracion, o 1211 en el caso de la cuarta, sin embargo, no lo pude hacer. Se me ocurre que de alguna manera, la copia
-    de este vector, debía ir fuera de esta función, fuera del for.*/
     return look;
 }
 
@@ -75,7 +80,6 @@ void cuentaNumeros(vector<int> secuencia)
     cout<<"La cantidad de números 4 es: "<<c4<<endl;
 }
 
-
 int main()
 {
 	int n;
@@ -83,12 +87,6 @@ int main()
 
 	cout<<"Ingrese el nivel de la secuencia Look and Say (Lass) hasta el cual desea mostrar: ";
     cin>>n;
-
-    while(n<0)
-    {
-        cout<<"El número de la secuencia a mostrar debe ser mayor que 0, intente nuevamente: ";
-        cin>>n;
-    }
 
     for(int i=1;i<=n;i++)
     {
@@ -111,6 +109,5 @@ int main()
     }
     cout<<endl;
     cuentaNumeros(look);
-    cout<<endl;
 	return 0;
 }

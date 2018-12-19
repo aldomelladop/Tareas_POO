@@ -10,8 +10,8 @@
 /* Pendientes
     - Agregar do while/ probar while (done)
     - Revisar numeros o letras repetidas en par ingresado a Enigma (done)
-    - avanzar los elementos del rotor sin crear un nuevo rotor 
-    - implementar operador modulo como herramienta para contador en rotación 
+    - avanzar los elementos del rotor sin crear un nuevo rotor
+    - implementar operador modulo como herramienta para contador en rotación
         crr%==0 // si el resto es cero, el numero ha rotado un numero que es múltiplo de 26
 */
 
@@ -27,9 +27,9 @@ class Rotor
         string rotaRotor(const char& c);
 
         /*Las funciones miembro, avanzaRotor(), así como avanzaClave(), son funciones que mediante el uso de getClave(), y setClave(), podrían ser usadas
-        para cambiar el valor de la claveRotada resultante de la rotación (c/26 crr (crr= contador Rotor rapido) ó c/676 crm (crm = contador rotor medio)), 
+        para cambiar el valor de la claveRotada resultante de la rotación (c/26 crr (crr= contador Rotor rapido) ó c/676 crm (crm = contador rotor medio)),
         con ello se podría hacer variar el string contenido  */
-        
+
         string avanzarRotor();
         string avanzaRotor(); //corresponde a un void puesto que modificaría el valor contenido sin llegar a retornada
         string avanzaClave();
@@ -196,7 +196,7 @@ class Enigma : public Rotor
 */
             for(itaux;itaux!=aux.end();itaux++)
             {
-                aux1.push_back(rotor_medio.encripta(*itaux)); 
+                aux1.push_back(rotor_medio.encripta(*itaux));
             }
 
             cout<<"Se procede a codificar por el rotor lento"<<endl;
@@ -264,6 +264,7 @@ class Enigma : public Rotor
             {
                 out<<x;
             }
+            cout<<"\nArchivo de salida: Creado. Codificación exitosa"<<endl;
         }
 
     private:
@@ -407,8 +408,6 @@ string Rotor::avanzaClave()
     return claverotada;
 }
 
-
-
 /*string Rotor::avanzaRotor(Rotor rotor_medio)
 {
 
@@ -425,42 +424,51 @@ int main()
     char n1errotor,n2orotor,n3errotor,letra1,letra2,letra3;
     int flag=0,flag1=0;
 
+    cout<<"\tMáquina Enigma"<<endl;
+    cout<<"\nPara realizar la codificación, dispone usted de 5 rotores, numerados del 1 al 5, de entre los cuales usted deberá escoger 3.\n\nPara ello, deberá indicar el número del primer, segundo y tercer rotor que desea usar, ingresando un numero tras otro, es decir, tres valores entre 1 y 5 cada uno.\n\nEj: 123"<<endl;
+
     while(flag!=1)
     {
-        cout<<"\n\tEscoja el numero de los rotores a usar: "<<endl;
+        cout<<"\nFavor, escoja el numero de los rotores a usar: ";
         cin>>n1errotor>>n2orotor>>n3errotor;
 
-        if(n1errotor==n2orotor || n1errotor==n3errotor || n2orotor==n3errotor
-        || n2orotor==n1errotor || n3errotor==n1errotor || n3errotor==n2orotor)
+        if(n1errotor!='1' && n1errotor!='2' && n1errotor!='3' && n1errotor!='4' && n1errotor!='5' ||
+            n2orotor!='1' && n2orotor !='2'  && n2orotor!='3' && n2orotor!='4'  && n2orotor!='5'  ||
+            n3errotor!='1'&& n3errotor!='2' && n3errotor!='3' && n3errotor!='4' && n3errotor!='5')
         {
-            cout<<"\nExisten elementos Rotor repetidos, favor escoja nuevamente los números a usar"<<endl;
+            cout<<"\nUno de los números de rotor, no se corresponde a la cantidad de rotores disponibles, intente nuevamente"<<endl;
             flag=0;
         }
         else
         {
-            flag=1;
+            if(n1errotor==n2orotor || n1errotor==n3errotor || n2orotor==n3errotor
+            || n2orotor==n1errotor || n3errotor==n1errotor || n3errotor==n2orotor)
+            {
+                cout<<"\nExisten elementos Rotor repetidos, favor escoja nuevamente los números de rotor a usar"<<endl;
+                flag=0;
+            }
+            else
+            {
+                flag=1;
+                while(flag1!=1)
+                {
+                    cout<<"Escoja la primera letra de la clave a utilizar para cada rotor: ";
+                    cin>>letra1>>letra2>>letra3;
+
+                    if(letra1==letra2 || letra1==letra3 || letra2==letra3
+                    || letra2==letra1 || letra3==letra1 || letra3==letra2)
+                    {
+                        cout<<"\n\t Existe una letra repetida, favor escoja nuevamente las letras a usar"<<endl;
+                        flag1=0;
+                    }
+                    else
+                    {
+                        flag1=1;
+                    }
+                }
+            }
         }
     }
-
-    while(flag1!=1)
-    {
-        cout<<"Escoja la primera letra de la clave a utilizar para cada rotor: "<<endl;
-        cin>>letra1>>letra2>>letra3;
-
-        if(letra1==letra2 || letra1==letra3 || letra2==letra3
-        || letra2==letra1 || letra3==letra1 || letra3==letra2)
-        {
-            cout<<"\n\t Existe una letra repetida, favor escoja nuevamente las letras a usar"<<endl;
-            flag1=0;
-        }
-        else
-        {
-            flag1=1;
-        }
-    }
-
-    
-    cout<<endl;
 
     string numeros = {n1errotor,n2orotor,n3errotor};
     string letras = {letra1,letra2,letra3};
@@ -468,6 +476,8 @@ int main()
     pair<char,char> par1,par2,par3;
     list<pair<char,char>> mylist ={par1,par2,par3};
     list<pair<char,char>>::iterator it=mylist.begin();
+
+    cout<<endl;
 
     for(int i=0;i<numeros.size();i++)
       {

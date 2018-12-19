@@ -55,7 +55,7 @@ int main()
 
     while(n<0)
     {
-      cout<<"El factorial no está definido para números negativos, intente nuevamente: ";
+      cout<<"\nEl factorial no está definido para números negativos, intente nuevamente: ";
       cin>>n;
     }
 

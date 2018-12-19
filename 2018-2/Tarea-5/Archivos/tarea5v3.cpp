@@ -16,9 +16,38 @@ typedef vector<int>::iterator iterador;
 
 class BigInteger {
 	public:
-		BigInteger();
-		BigInteger(string input){}
+		BigInteger(string input)
+		{
+			int k=0;
+			string::iterator it1 = input.begin();
 
+			for(it1;it1!=input.end();it1++)
+			{
+				k  = int(*it1-48);
+				//cout<<"k "<<k<<endl;
+
+				if(it1==input.begin() && k!=0)
+				{
+					sign = *it1;
+					signo = *it1;
+				}
+				else
+				{
+					sign = ' ';
+					signo = 1;
+					entero.push_back(k);
+				}
+				numero.push_back(k);
+			}
+			if(signo = -1)
+			{
+				sign = '-';
+			}
+			else
+			{
+		        sign = ' ';
+			}
+		}
 		void setEntero(vecint a);
 		vecint getEntero();
 
@@ -33,7 +62,7 @@ class BigInteger {
 
 		//li strToList(string str);
 
-        //Destructor
+       	//Destructor
        	~BigInteger();
 	private:
 		int signo;
@@ -42,44 +71,6 @@ class BigInteger {
 		vecint entero; // Parte entera del BigInteger
 };
 
-///Constructores
-BigInteger::BigInteger()
-{
-
-}
-
-BigInteger::BigInteger(string input)
-{
-	int k=0;
-	string::iterator it1 = input.begin();
-
-	for(it1;it1!=input.end();it1++)
-	{
-		k  = int(*it1-48);
-		//cout<<"k "<<k<<endl;
-
-		if(it1==input.begin() && k!=0)
-		{
-			sign = *it1;
-			signo = *it1;
-		}
-		else
-		{
-			sign = ' ';
-			signo = 1;
-			entero.push_back(k);
-		}
-		numero.push_back(k);
-	}
-	if(signo = -1)
-	{
-		sign = '-';
-	}
-	else
-	{
-        sign = ' ';
-	}
-}
 
 bool BigInteger::esPar() const
 {

@@ -84,9 +84,9 @@ int main()
 	cout<<"Ingrese el nivel de la secuencia Look and Say (Lass) hasta el cual desea mostrar: ";
     cin>>n;
 
-    while(n<0)
+    while(n<=0)
     {
-        cout<<"El número de la secuencia a mostrar debe ser mayor que 0, intente nuevamente: ";
+        cout<<"\nEl número de la secuencia a mostrar debe ser mayor que 0, intente nuevamente: ";
         cin>>n;
     }
 

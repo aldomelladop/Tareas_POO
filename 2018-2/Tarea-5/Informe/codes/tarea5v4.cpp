@@ -5,8 +5,6 @@
 #include <list>
 #include <algorithm>    // transform
 #include <functional>   // plus
-#include <ctype.h> // isnumber & isdigit
-
 //#include <stdexcept>
 
 using namespace std;
@@ -45,74 +43,65 @@ class BigInteger {
 };
 
 ///Constructores
-BigInteger::BigInteger(){}
+BigInteger::BigInteger()
+{
+
+}
 
 BigInteger::BigInteger(string input)
 {
-	int largo = input.size();
+	int k=0;
+	string::iterator it1 = input.begin();
+	string::iterator it2 = input.begin();
 
-	int k=0,j=0;
-	string::iterator it1 = input.begin(); 
 
-	int flag = 1;
-
-	while(flag!=0)
+	for(it1;it1!=input.end();it1++)
 	{
 		k  = int(*it1-48);
-		
-		if(*it1=='-'&& j==0)
+
+		if(it2.find('.')==it2.end())
 		{
-			signo = -1;
-			flag=1;
-		}
-		else if((*it1=='0' && j==0) || (*it1=='0'&& j==1))
-		{
-			signo=0;
-			entero.push_back(0);
-			flag=0;
-		}
-		else if(*it1=='.')
-		{
-			flag=0;
-		}
-		else 
-		{
-			if(signo==-1)
+			if(it1==input.begin() && k!=0)
 			{
-				entero.push_back(k);
-				flag=1;
+				sign = *it1;
+				signo = *it1;
 			}
 			else
 			{
+				sign = ' ';
 				signo = 1;
 				entero.push_back(k);
-				flag=1;	
 			}
+			numero.push_back(k);
 		}
-		numero.push_back(k);
-		it1++;
-		j++;
-	}
+		else
+		{
+			continue;
+		}
+		it2++;
 
-	if(signo == -1)
+		cout<<"(k,*it1) "<<"("<<k<<","<<*it1<<")"<<endl;
+
+	}|
+
+	if(signo = -1)
 	{
 		sign = '-';
 	}
-	else if(signo == 1)
+	else
 	{
-        sign = '0';
-	}
-	else if(signo== 0)
-	{
-		sign = '0';
+        sign = ' ';
 	}
 }
 
 bool BigInteger::esPar() const
 {
 	bool flag;
+	vecint aux = entero;
 
-	if(*(entero.end()-1)==0 || *(entero.end()-1)==2 || *(entero.end()-1)==4 || *(entero.end()-1)==6 || *(entero.end()-1)==8)
+	iterador it=aux.begin();
+
+	if(*(aux.end()-1)==0 || *(aux.end()-1)==2 || *(aux.end()-1)==4 || *(aux.end()-1)==6 || *(aux.end()-1)==8)
 	{
 		flag = true;
 	}
@@ -127,7 +116,7 @@ bool BigInteger::esImpar() const
 {
 	bool flag;
 
-	if(*(entero.end()-1)==1 || *(entero.end()-1)==3 || *(entero.end()-1)==5 || *(entero.end()-1)==7 || *(entero.end()-1)==9)
+	if(*(numero.end()-1)==1 || *(numero.end()-1)==3 || *(numero.end()-1)==5 || *(numero.end()-1)==7 || *(numero.end()-1)==9)
 	{
 		flag = true;
 	}
@@ -141,17 +130,13 @@ bool BigInteger::esImpar() const
 
 void BigInteger::setSigno(int siggno)
 {
-	if(siggno ==-1)
+	if(siggno = -1)
 	{
 		sign = '-';
 	}
-	else if(siggno== 1)
+	else
 	{
-       sign = '\0';
-	}
-	else if(siggno==0)
-	{
-		sign = '\0';
+        sign = ' ';
 	}
 }
 
@@ -177,6 +162,36 @@ BigInteger::~BigInteger()
     entero.clear();
 }
 
+/*
+//Función que convierte de string a lista de enteros
+li BigInteger::strToList(string str)
+{
+	li list1;
+	int j=0,k=0;
+	string s = str;
+	string::iterator it1 = s.begin();
+
+	for(it1;it1!=s.end();it1++)
+	{
+		j++;
+		k  = int(*it1-48);
+
+		if(*it1=='-')
+		{
+			list1.push_back(0);
+			//sign.set(-1);
+		}
+
+		else
+		{
+			list1.push_back(k);
+			//sign.set(1);
+		}
+	}
+	return list1;
+}
+*/
+
 void printList(li v)
 {
 	for(auto x:v)
@@ -195,19 +210,14 @@ void printList(li v)
 int main()
 {
 	vecint input, aux;
-	string numero,numero1,numero2;
+	string numero;
 
 	cout<<"\nIngrese un número para crear el objeto BigInteger: ";
-	//cin>>numero;
-	numero = "-123.12";
-	numero1 = "0.0";
-	numero2 = "1.1";
-
-	cout<<endl;
+	cin>>numero;
 
 	BigInteger bi(numero);
 
-	cout<<"\n\tBigInteger("<<numero<<")"<<endl;
+	cout<<"BigInteger("<<numero<<")"<<endl;
 
 	aux = bi.getEntero();
 	cout<<"\nProbando getEntero: ";
@@ -235,7 +245,6 @@ int main()
         cout<<"El número no es Impar";
 	}
 
-	cout<<endl;
 	return 0;
 }
 

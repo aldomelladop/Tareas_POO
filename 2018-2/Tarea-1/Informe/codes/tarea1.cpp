@@ -22,9 +22,9 @@ void factorial(int num)
    {
      for(int j=0;j<auxiliar.size();j++)
         {
-           int temp = auxiliar[j]*i; // x contiene el producto dígito a dígito
-           auxiliar[j]=(temp+c)%10; //Contiene el dígito almacenado en la posición j-ésima
-           c = (temp+c)/10; //Contiene el valor del acarreo que será almacenado más tarde en los índices
+           int temp = auxiliar[j]*i; // x contiene el producto digito a digito
+           auxiliar[j]=(temp+c)%10; //Contiene el digito almacenado en la posicion j-esima
+           c = (temp+c)/10; //Contiene el valor del acarreo que será almacenado mas tarde en los indices
         }
          while(c>0) //el ciclo while almacena el valor de acarreo en el vector
          {

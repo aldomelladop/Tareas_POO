@@ -145,50 +145,48 @@ Ingeniería Civil en Telecomunicaciones
 
 Se nos introduce a los números pandigitales explicándonos que es el resultado de la combinatoria entre ciertos digitos cuya principal propiedad es que estos aparecen sólo una vez. Es por esta definición que en la implementación de la resolución de esta tarea se consideró la combinatoria, llevada a cabo en el código por la siguiente función:\\
 
-\framebox{
 \lstset{style=mystyle, language= C++}
-\lstinputlisting[language=C++, firstline=48,lastline=57]{./codes/T3_pandigital.cpp}\label{lst:sumofvec}
-}
-\vspace{0.5cm}
+\lstinputlisting[language=C++, firstline=18,lastline=26]{./codes/tarea3.cpp}\label{lst:sumofvec}
 
-Esto, acorde a la combinatoria, es capaz de obtener el número de posibles combinaciones de dígitos entre 0-9. Y que de acuerdo a lo entregado por la función corresponde a 3628800.\\
+Esto, acorde a la combinatoria, es capaz de obtener el número de posibles combinaciones de dígitos entre 0-9, que de acuerdo a lo entregado por la función corresponde a 3628800.\\
+
 Posteriormente se debían generar dichas permutaciones y para ello se hizo uso de la siguiente función.\\
 
-\framebox{
+%\framebox{
 \lstset{style=mystyle, language = C++}
-\lstinputlisting[language = C++,firstline = 61, lastline =82] {./codes/T3_pandigital.cpp}}
+\lstinputlisting[language = C++,firstline = 28, lastline =40] {./codes/tarea3.cpp}
+%}
 
-\vspace{0.5cm}
 Notar que además de valerse de la función \texttt{next\_ permutation(l2.begin(),l2.end())} para obtener las posibles permutaciones, se hace uso de un archivo de texto generado al cual se le escriben los valores resultantes. Esto será especialmente util para cuando deban hacerse ciertas consideraciones posteriores, pues permitirá que el procesamiento sea más rápido que si se mostrara por consola o se calculasen cada vez que se desee ejecutar una condición sobre los números de la permutación.\\
 
 Luego se pide que para los números generados, se evalúe cuántos y cuáles de ellos satisfacen las condiciones dadas. Para dicho cometido se genera la siguiente función:\\
 
-%\framebox{
 \lstset{style = mystyle,language = C++}
-\lstinputlisting[language = C++, firstline = 87, lastline = 87]{./codes/T3_pandigital.cpp}
-%}
-
-Como se aprecia en el código adjuntado en al mail enviado, se tiene que una vez definidos los enteros que servirán de contadores de ocurrencia de cada una de las propiedades pedidas, se procede a transformar, mediante \texttt{stoi(temp)}, los números generados que se almacenaron en forma de strings, a enteros para poder así travajar con ellos. Se trabaja además con la función \texttt{int2vector}, que nos permite transformar los números, en vectores que serán recorridos por iteradores. \\
+\lstinputlisting[language = C++, firstline = 42, lastline = 55]
+{./codes/tarea3.cpp}
 
 \newpage
-Así, tal y como se aprecia en las siguientes líneas\\
 
-Se tiene que se evalúan las condiciones, y luego, se establece si hubo o no una ocurrencia. 
+Como se puede ver, se tiene que \texttt{propiedad}, recibe un string, que corresponde a una de las permutaciones que realiza la función permutar. Este string es descompuesto, tal y como se muestra en la línea 3 y 4, en distintos elementos que señalan el lugar que ocupan dentro del string. Esto fue hecho para facilitar la verificación del cumplimiento de las propiedades que se debían evaluar.\\
 
-%\framebox{
-\lstset{style = mystyle,language = C++}
-\lstinputlisting[language = C++, firstline = 100, lastline =145]{./codes/T3_pandigital.cpp}
-%}
+Se construyen los números tomando los índices que le corresponden según la condición que deban evaluar. Hecho esto, eran empujadas a un string llamado \texttt{n}. Este luego, para evaluar la condición era transformado en un entero (usando \texttt{stoi}) y si se cumplía la condición se incrementaba el contador respectivo, en este caso cdv3.\\
 
-Finalmente, se pide saber cuántos números son finalmente divisibles por 2, 3, 5, 7, 11, 13 y 17 respectivamente. Esta información es entregada, como dicen las siguientes líneas, por los valores de, \texttt{dv2,dv3,dv5,dv7,dv11,dv13,dv17}
+Luego, se definió una condición que, representada por \texttt{flag}, señala si se cumple o no la condición. Por ejemplo, para el caso de \texttt{dv2}, construido a partir de las posiciones \texttt{d2,d3,d4},se tiene que si este cumple la condición, entonces el valor de \texttt{flag} se modifica en favor de seguir evaluando las otras condiciones, tal y como se ve para :\\
 
 \lstset{style = mystyle,language = C++}
-\lstinputlisting[language = C++, firstline = 150, lastline =158]{./codes/T3_pandigital.cpp}
+\lstinputlisting[language = C++, firstline = 77, lastline = 84]
+{./codes/tarea3.cpp}
 
-\subsection{Problemas}
 
-\begin{enumerate}
-\item{Uno de los problemas presentados, fue que dada la gran cantidad de números que se debían generar, evaluarlos en el momento o iterar la función \texttt{permutar} por todas y cada una de las veces que se deseara evaluar alguna condición no era en lo absoluto eficiente y generar un vector de vectores de 362800 elementos tampoco era muy factible, de modo que la alternativa del archivo de texto era sino, una de las más óptimas.}
-\item{\textbf{Cantidades y suma:} se aprecia en el código que tanto la suma, como la cantidad de números divisibles por los distintos números primos, en consideración de la cantidad de números generados es notoriamente baja, esto debido a cómo se concibió el código y es que por ejemplo, para la suma, se tomaron los números resultantes de más de 9 cifras de modo que al sumarlos todos se produjo overflow y el número representado no es el que realmente debió obtenerse.}
-\end{enumerate}
+
+Además se sumaba dicho numero a una suma general que contenía el resultado de sumar todos los números que cumplían dicha condición.
+
+\subsection{Resultados}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{./imagenes/captura1}
+\caption{Resultados Números pandigitales}
+\end{figure}
+
 \end{document}

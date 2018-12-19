@@ -108,6 +108,38 @@ BigInteger::BigInteger(string input)
 	}
 }
 
+void BigInteger::setEntero(vecint aux)
+{
+	entero = aux;
+}
+
+vecint BigInteger::getEntero()
+{
+	return entero;
+}
+
+void BigInteger::setSigno(int siggno)
+{
+	if(siggno ==-1)
+	{
+		sign = '-';
+	}
+	else if(siggno== 1)
+	{
+       sign = '\0';
+	}
+	else if(siggno==0)
+	{
+		sign = '\0';
+	}
+}
+
+uc BigInteger::getSigno()
+{
+	return sign;
+}
+
+
 bool BigInteger::esPar() const
 {
 	bool flag;
@@ -139,36 +171,7 @@ bool BigInteger::esImpar() const
 	return flag;
 }
 
-void BigInteger::setSigno(int siggno)
-{
-	if(siggno ==-1)
-	{
-		sign = '-';
-	}
-	else if(siggno== 1)
-	{
-       sign = '\0';
-	}
-	else if(siggno==0)
-	{
-		sign = '\0';
-	}
-}
-
-uc BigInteger::getSigno()
-{
-	return sign;
-}
-
-void BigInteger::setEntero(vecint aux)
-{
-	entero = aux;
-}
-
-vecint BigInteger::getEntero()
-{
-	return entero;
-}
+///Destructor
 
 BigInteger::~BigInteger()
 {
@@ -177,6 +180,7 @@ BigInteger::~BigInteger()
     entero.clear();
 }
 
+///Funciones
 void printList(li v)
 {
 	for(auto x:v)

@@ -159,7 +159,7 @@ Por practicidad, evaluaré los problemas de manera tal que abordaré los problemas
 \item{\textbf{\texttt{string avanzaRotor():}} El problema dentro de esto, es que la función avanzaRotor, presentada a continuación:
 
 \lstset{style=mystyle, language = C++}
-\lstinputlisting[language = C++,firstline = 356, lastline =382] {./codes/tarea6v6.cpp}
+\lstinputlisting[language = C++,firstline = 356, lastline =382] {./codes/tarea6.cpp}
 
 En la forma en que la pensé originalmente, era que entregara la clave del rotor avanzada, y así, que esta fuera introducida en un nuevo rotor que sería el rotor de la clave avanzada. Sin embargo, luego se me hizo el alcance de que en realidad lo que debería retornar era un rotor con la clave rotada en vez de la clave rotada.\\
 
@@ -210,5 +210,9 @@ encontrado a un char llamado \texttt{salida}.}
 \end{enumerate}
 
 \subsection{Resultados}
-
+\begin{figure}[h!]
+%\centering
+\subfigure[Texto original]{\includegraphics[scale=0.25]{./imagenes/img1}}
+\subfigure[Texto encriptado]{\includegraphics[scale=0.25]{./imagenes/img2}}
+\end{figure}
 \end{document}

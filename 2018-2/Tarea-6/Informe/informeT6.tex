@@ -159,7 +159,7 @@ Por practicidad, evaluaré los problemas de manera tal que abordaré los problemas
 \item{\textbf{\texttt{string avanzaRotor():}} El problema dentro de esto, es que la función avanzaRotor, presentada a continuación:
 
 \lstset{style=mystyle, language = C++}
-\lstinputlisting[language = C++,firstline = 356, lastline =382] {./codes/tarea6v6.cpp}
+\lstinputlisting[language = C++,firstline = 356, lastline =382] {./codes/tarea6.cpp}
 
 En la forma en que la pensé originalmente, era que entregara la clave del rotor avanzada, y así, que esta fuera introducida en un nuevo rotor que sería el rotor de la clave avanzada. Sin embargo, luego se me hizo el alcance de que en realidad lo que debería retornar era un rotor con la clave rotada en vez de la clave rotada.\\
 
@@ -174,15 +174,17 @@ Esto a su vez ocasionó que no pudiera rotarse el rotor cuando, luego de pasar po
 \item{\textbf{Sobre el abecedario y caracteres especiales:} Se tiene que el texto a codificar, dada que se trata de uno de narrativa, y no de simples números o simples letras, cuenta además con caracteres especiales, signos de interrogación, exclamación y guiones que le dan coherencia al texto, que sí o sí debían traspasarse. Por lo que debía hacerse la salvedad para con estos.}
 \end{enumerate}
 
+\newpage 
+
 \subsection{Soluciones}
 \begin{enumerate}
 
 \item{\textbf{\texttt{while(flag!=1)}:} A modo de evitar que el usuario pudiera cometer este error, propuse que evaluase los valores introducidos de la siguiente manera: 
 
 \lstset{style=mystyle, language = C++}
-\lstinputlisting[language = C++,firstline = 445, lastline =460] {./codes/tarea6v6.cpp}
+\lstinputlisting[language = C++,firstline = 430, lastline =481] {./codes/tarea6.cpp}
 
-De este modo, tanto si introduce el mismo número de rotor, así como de letras, el usuario podrá enmendar su error y optar a codificar el texto.}
+De este modo, tanto si introduce el mismo número de rotor, así como de letras, o bien, si decide ingresar caracteres especiales en el número de rotores o en las letras con que se inicializa el rotor, el usuario podrá enmendar su error y optar a codificar el texto.}
 
 \item{\textbf{\texttt{convertir()}}: Ciertamente la solución a convertir pudo haber sido el declararla como función miembro de Enigma y que esta hiciera las de desplegar el texto donde se señala que los rotores escogidos fueron los ingresados, que la codificación pasó por los rotores rapido, medio, lento, reflector, lento, medio y rapido respectivamente.}
 
@@ -190,7 +192,7 @@ De este modo, tanto si introduce el mismo número de rotor, así como de letras, e
 
 
 \lstset{style=mystyle, language = C++}
-\lstinputlisting[language = C++,firstline = 292, lastline =308] {./codes/tarea6v6.cpp}
+\lstinputlisting[language = C++,firstline = 293, lastline =309] {./codes/tarea6.cpp}
 }
 
 \item{\textbf{\texttt{string avanzaClave()}:} Para hacer avanzar la clave se pensó hacer uso de las funciones get(), and set(), donde estas fueran funciones miembro de la clase Enigma, sin embargo, por desconocimiento del uso.}
@@ -198,7 +200,7 @@ De este modo, tanto si introduce el mismo número de rotor, así como de letras, e
 \item{\textbf{Sobre el abecedario y caracteres especiales:} Se implementó la siguiente solución al problema señalado.
 
 \lstset{style=mystyle, language = C++}
-\lstinputlisting[language = C++,firstline = 299, lastline =306] {./codes/tarea6v6.cpp}
+\lstinputlisting[language = C++,firstline = 300, lastline =307] {./codes/tarea6.cpp}
 
 En ella se aprecia que mediante el uso de la función \texttt{.find()}, se hacía que, por funcionamiento de esta, si dentro de \texttt{codificador}, no se hallaba ningún elemento que coincidiera con los que este contenía, retornaba una posición al final de este, esto se ve en la línea: 
 
@@ -209,10 +211,14 @@ encontrado a un char llamado \texttt{salida}.}
 
 \end{enumerate}
 
+\newpage
+
 \subsection{Resultados}
 \begin{figure}[h!]
 %\centering
 \subfigure[Texto original]{\includegraphics[scale=0.25]{./imagenes/img1}}
 \subfigure[Texto encriptado]{\includegraphics[scale=0.25]{./imagenes/img2}}
+\centering
+\subfigure[Cuadro de diálogo desplegado]{\includegraphics[scale=0.4]{./imagenes/captura}}
 \end{figure}
 \end{document}

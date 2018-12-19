@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.15)  10 DEC 2018 14:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.15)  19 DEC 2018 15:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -660,7 +660,7 @@ LaTeX Info: Redefining \nameref on input line 61.
 \@outlinefile=\write5
 \openout5 = `formato_informes.out'.
 
-<./imagenes/logo.png, id=12, 242.9075pt x 303.1325pt>
+<./imagenes/logo.png, id=20, 242.9075pt x 303.1325pt>
 File: ./imagenes/logo.png Graphic file (type png)
 <use ./imagenes/logo.png>
 Package pdftex.def Info: ./imagenes/logo.png  used on input line 98.
@@ -715,18 +715,79 @@ Underfull \hbox (badness 10000) in paragraph at lines 148--149
  []
 
 
-LaTeX Warning: Reference `tab:1' on page 1 undefined on input line 161.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 161--162
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
 
  []
 
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 164.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 164.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 164.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 164.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 164.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 164.
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--164
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
 
+<./imagenes/captura1.png, id=33, 483.8075pt x 113.42375pt>
+File: ./imagenes/captura1.png Graphic file (type png)
+<use ./imagenes/captura1.png>
+Package pdftex.def Info: ./imagenes/captura1.png  used on input line 170.
+(pdftex.def)             Requested size: 241.90315pt x 56.71173pt.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 174.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 174.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 174.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 174.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 174.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 174.
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+
+ []
+
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 194.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 194.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 194.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 194.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 194.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 194.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 194.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 194.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 194.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 194.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 194.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 194.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.194 \newpage
+               [1 <./imagenes/captura1.png>]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
@@ -737,131 +798,118 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 )
 (./codes/tarea1.cpp)
-Underfull \hbox (badness 10000) in paragraph at lines 171--172
+Overfull \hbox (7.93665pt too wide) in paragraph at lines 201--203
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
 
  []
 
 (./codes/tarea1.cpp)
-Underfull \hbox (badness 10000) in paragraph at lines 176--178
+Underfull \hbox (badness 10000) in paragraph at lines 221--222
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 179--180
-
- []
-
-(./codes/tarea1.cpp)
-Underfull \hbox (badness 10000) in paragraph at lines 187--188
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
-
- []
-
+(./codes/tarea1.cpp) (./codes/tarea1.cpp)
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 191.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 191.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 191.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 191.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 191.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 191.
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
-
- []
-
-(./codes/tarea1.cpp)
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
-
- []
-
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 200.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 200.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 200.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 200.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 200.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 200.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 200.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 200.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 200.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 200.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 200.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 200.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.200 
-       [1]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 224.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 224.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 224.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 224.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 224.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 224.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 224.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 224.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 224.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 224.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 224.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 224.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 224.
+(babel)             in language  on input line 229.
  [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 231.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 231.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 231.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 231.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 231.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 231.
+<./imagenes/captura2.png, id=89, 487.8225pt x 153.57375pt>
+File: ./imagenes/captura2.png Graphic file (type png)
+<use ./imagenes/captura2.png>
+Package pdftex.def Info: ./imagenes/captura2.png  used on input line 235.
+(pdftex.def)             Requested size: 243.91064pt x 76.78668pt.
+<./imagenes/captura3.png, id=90, 547.04375pt x 595.22375pt>
+File: ./imagenes/captura3.png Graphic file (type png)
+<use ./imagenes/captura3.png>
+Package pdftex.def Info: ./imagenes/captura3.png  used on input line 236.
+(pdftex.def)             Requested size: 218.81361pt x 238.08528pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 243.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 243.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 243.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 243.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 243.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 243.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 243.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 243.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 243.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 243.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 243.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 243.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 243.
+ [3 <./imagenes/captura2.png> <./imagenes/captura3.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 243.
  (build/formato_informes.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 224.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 224.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 243.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 243.
 Package rerunfilecheck Info: File `formato_informes.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 224.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 243.
  ) 
 Here is how much of TeX's memory you used:
- 15104 strings out of 492982
- 211119 string characters out of 6134895
- 351477 words of memory out of 5000000
- 18451 multiletter control sequences out of 15000+600000
- 13413 words of font info for 56 fonts, out of 8000000 for 9000
+ 15158 strings out of 492982
+ 212054 string characters out of 6134895
+ 429521 words of memory out of 5000000
+ 18471 multiletter control sequences out of 15000+600000
+ 13712 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,13n,59p,460b,1336s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,13n,59p,411b,1340s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/tex
@@ -871,14 +919,15 @@ st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on build/formato_informes.pdf (3 pages, 168803 bytes).
+/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on build/formato_informes.pdf (4 pages, 228646 bytes).
 PDF statistics:
- 105 PDF objects out of 1000 (max. 8388607)
- 83 compressed objects within 1 object stream
- 19 named destinations out of 1000 (max. 500000)
- 22 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 163 PDF objects out of 1000 (max. 8388607)
+ 132 compressed objects within 2 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -156,69 +156,86 @@ Para estos efectos se consideró trozar cada número obtenido en el cálculo del fa
 10! =& 3 & 6 & 2 & 8 & 8 & 0 & 0\\ \cline{2-8}
 \end{tabular}\vspace{0.2cm}
 \caption{Representación de vector resultante}
+\label{tab:1}
 \end{table}
 
-de manera que a la siguiente iteración, es decir, al 11!, el número por el cuál hacer el producto no fuese 3628800, sino que el vector mencionado en \ref{tab:1}.\\
-
-Para este cometido, se crearon las funciones;\\
-
-\framebox{
-\lstset{style=mystyle, language= C++}
-\lstinputlisting[language=C++, firstline=11,lastline=11]{./codes/tarea1.cpp}
-}
-\vspace{0.5cm}
-
-Lo que hacía dentro del código era precisamente seccionar los números para evitar el overflow. Esto lo hacía usando una división iterativa que dividía el número por potencias de diez hasta que el resto era módulo resultante era 0, lo que se traducía en que este había llegado a la unidad, la cual debía ser empujada como último elemento del vector.\\
-
-\framebox{
-\lstset{style=mystyle, language= C++}
-\lstinputlisting[language=C++, firstline=27,lastline=27]{./codes/tarea1.cpp}\label{lst:sumofvec}
-}
-\vspace{0.5cm}\\
-
-Esta función debería tomar los elementos del vector y uno a uno irlos sumando. Considerando además el \textit{carry} que se produce para la suma entre números sobre 9. Entrega además un vector resultante (\texttt{Suma}) que corresponde al resultado de la suma de los dígitos como se mencionó anteriormente.\\
-
-\framebox{
-\lstset{style=mystyle, language= C++}
-\lstinputlisting[language=C++, firstline=71,lastline=71]{./codes/tarea1.cpp}
-}
-\vspace{0.5cm}
-
-El factorial, por definición involucra un producto de dos elementos que se relacionan por ser el producto de un número con otro previamente obtenido, de modo que en el código, la función que realiza dicho cálculo es esta y al igual que en la función \texttt{sumofvec}, se hace, elemento a elemento el producto, considerando los carry.\\
-
-Al igual que en la función suma, se consideran aspectos de orden y largo, es decir, se compara el largo de los dos vectores y en caso de no ser iguales, se rellena con ceros tantas veces como dígitos de diferencia tengan respecto del largo.\\
+sin embargo, el realizar la multiplicación término a término, de un vector por otro, aplicando a la suma un carry y al producto, la utilización de esta función suponía una operación demasiado engorrosa y que en la iteración anterior de esta tarea no dió resultado, razón por la cual se procedió de otra manera.\\
 
 \subsection{Problemas}
 
-\begin{enumerate}[1.]
-\item{\textbf{Largo vectores}: Se tiene que desde casos tan sencillos como 4! y 5!, cuyos resultados son respectivamente, 24 y 120, tienen largo de vector diferente. Para dar solución a ello, se usaron las siguientes líneas de código.\\
+Más que aparecer como problemas aparecen como alcances o salvedades que se hicieron, y es que dado que el factorial no está definido para los números negativos, se le dió la posibilidad de que el usuario si es que desease calcular un valor menor que cero, pudiera reingresar el valor, a posteriori, de hacerle notar que el valor ingresado no es válido.\\
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{./imagenes/captura1}
+\caption{Valor ingresado no válido}
+\end{figure}
+
+\subsubsection{Solución}
+
+Tal como se menció anteriormente, para el cálculo de los factoriales, hacerlo por una lista resultó engorroso y complejo de manera que se hizo tal que para un vector, se fuera calculando el resultado de hasta el número elegido por el usuario, donde dicho número era descompuesto dígito a dígito.\\
+
+Una vez descompuesto, este era multiplicado por el siguiente número dentro del factorial. Por ejemplo, para el caso de 11!;
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{ccccccccccccc}
+\cline{1-1} \cline{3-9}
+\multicolumn{1}{|c|}{10!} & \multicolumn{1}{c|}{=} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} &  &  &  &  \\ \cline{1-1} \cline{3-9}
+ &  &  &  &  &  &  &  &  &  &  &  &  \\ \cline{1-1} \cline{3-3} \cline{5-5}
+\multicolumn{1}{|c|}{11!} & \multicolumn{1}{c|}{=} & \multicolumn{1}{c|}{10!} & \multicolumn{1}{c|}{*} & \multicolumn{1}{c|}{11} &  &  &  &  &  &  &  &  \\ \cline{1-1} \cline{3-3} \cline{5-5}
+ &  &  &  &  &  &  &  &  &  &  &  &  \\ \cline{3-9} \cline{11-12}
+ & \multicolumn{1}{c|}{=} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{*} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} &  \\ \cline{3-9} \cline{11-12}
+ &  &  &  &  &  &  &  &  &  &  &  &  \\ \cline{3-10}
+ & \multicolumn{1}{c|}{=} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{9} & \multicolumn{1}{c|}{9} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} &  &  &  \\ \cline{3-10}
+\end{tabular}
+\end{table}
+
+\newpage
+
+Ello se hace a través de dos ciclos for, como se enuncia en el siguiente fragmento:
+
+\framebox{
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=21,lastline=34]{./codes/tarea1.cpp}
+}
+\vspace{0.5cm}
+
+En adición a lo anterior, la tarea solicita que se cree una función que una vez calculado el factorial, realice la suma de los dígitos, sin embargo, para efectos de como opera el código, se tiene que el cálculo de los dígitos se va haciendo en reversa, es decir, la forma en que se almacena el factorial de 10! en \texttt{vecto<int> \ auxiliar} es la siguiente: \\
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c|c|c|c|c|c|}
+\cline{2-8}
+&0&0&8&8&2&6&3\\ \cline{2-8}
+\end{tabular}\vspace{0.2cm}
+\caption{Representación de la forma en que se almacenan los dígitos}
+\end{table}
+
+Si bien la suma no se ve afectada por el orden, al desplegar los resultado hace falta aplicar las siguientes líneas de código:\\
+
 
 \lstset{style=mystyle, language= C++}
-\lstinputlisting[language=C++, firstline=89,lastline=92]{./codes/tarea1.cpp}
-}
-\item{\textbf{Función}: En el caso de esta función, se tiene que al realizar el producto pero no arrastrar a la suma el resultado, no continúa en los valores siguientes. Por ejemplo, si el producto es 9*2 = 18, hace \texttt{push\_ back(8)}, mas no hace la suma entre el resultado del producto de los siguientes números y el carry de la multiplicación previa, si lo hubiera. Que para efectos de este ejemplo, sería 1.\\
+\lstinputlisting[language=C++, firstline=36,lastline=45]{./codes/tarea1.cpp}
 
-El problema podría eventualmente ser resulto si se enlaza la función \texttt{prodofvect} con la función \texttt{sumofvect}.
-}
+Una vez hecho esto, se procede a hacer la suma, cuya función es la siguiente:\\
 
-\end{enumerate}
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=46,lastline=47]{./codes/tarea1.cpp}
 
-%\begin{lstlisting}
-%\end{lstlisting}
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=10,lastline=14]{./codes/tarea1.cpp}
 
-%\begin{thebibliography}{}
-%\bibitem{1} R. Contreras, \textit{}, Taller de Vida Artificial I, Universidad de Concepción, 2018.
-%\bibitem{2} R. Contreras, \textit{},Taller de Vida Artificial I, Universidad de Concepción, 2018.
-%\bibitem{3} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www.cs.us.es/~fsancho/?e=52}
-%\bibitem{4} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www.cs.us.es/~fsancho/?e=72}
-%\bibitem{5} Accedido en octubre de 2018. [En línea]. Disponible en: \url{https://advancedtech.wordpress.com/2008/08/08/redes-neuronales-4/}
-%\bibitem{6} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www.cs.us.es/~fsancho/?e=71}
-%
-%\bibitem{7} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www0.unsl.edu.ar/~dmcc/files/tesis-f.pdf}
-%\bibitem{8} Accedido en octubre de 2018. [En línea]. Disponible en: \url{https://scielo.conicyt.cl/scielo.php?script=sci_arttext&pid=S0718-33052011000200010}
-%\bibitem{9} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://eprints.gla.ac.uk/3894/}
-%
-%\end{thebibliography}
+\subsection{Resultados}
+
+\begin{figure}[h!]
+\centering
+\subfigure[]{\includegraphics[scale=0.5]{./imagenes/captura2}}
+\subfigure[]{\includegraphics[scale=0.5]{./imagenes/captura3}}
+\caption{Resultados obtenidos d
+\end{figure}
+
+
 
 
 \end{document}

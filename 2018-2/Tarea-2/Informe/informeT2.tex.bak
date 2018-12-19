@@ -111,7 +111,7 @@
 \begin{center}
 \Huge{{\Huge I}nforme {\Huge N°2}\\}
 \vspace{0.3cm}
-\large{\bf Uso de objetos de string}\\
+\large{\bf Generando secuencias infinitas}\\
 \vspace{1cm}
 {\normalsize \textit{Profesor: Mario Medina}}\\[0.2cm]
 {\normalsize \textit{Alumno: Aldo Mellado Opazo}}\\[0.5cm] 
@@ -189,75 +189,50 @@ $L_{5}$ =& 1&1&1&2&2&1\\ \cline{2-7}
 %\caption{Representación de vector resultante}
 \end{table}
 
-
 Dicho esto, se intentó emular la lógica de la resolución del problema, a través de las siguientes líneas de código.\\
 
-\lstset{style=mystyle, language= C++}
-\lstinputlisting[language=C++, firstline=6,lastline=26]{./codes/tarea2v7.cpp}\label{lst:sumofvec}
 
-Mediante el uso de un ciclo for se recorren los elementos almacenados en el vector resultante de la iteración previa, y se evalúan según lo que establece la secuencia look and say, evaluándo elemento a elemento, comparándolos si es que son iguales el elemento actual, con el siguiente, y si es que este último, no corresponde al final del vector a recorrer.\\
+\subsection{Solución}
+\subsubsection*{Funcion \texttt{cuentandSay}}
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=93,lastline=111]{./codes/tarea2.cpp}
+
+Como se puede ver en la linea 4, se tiene en consideración la inicialización de la secuencia, haciéndola partir con un uno en el primer nivel de ésta.\\
+
+Luego, se tiene que para el siguiente nivel, deben exisitr \textit{Dos \ unos}, y esto se logra inicializando otro valor 1 más.\\
+
+Finalmente, para el resto de la secuencia se aplica lo que se llama en la línea 16, la función \texttt{countandSay(look,i)}, que como parámetros recibe el valor resultante \texttt{look}, que no es más que el vector resultante de la iteración anterior de la función.\\
+
+En la tercera iteración, esta realiza lo siguiente:\\
+
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=10,lastline=38]{./codes/tarea2.cpp}
+
+Esta función recibe un vector, y un entero; el primero corresponde al vector que contiene el resultado del nivel anterior de la secuencia, y el entero, el nivel de secuencia hasta el cual debe llegar.\\
+
+Lo medular de estas líneas reside en las siguientes condiciones bajo las cuales se ejecuta el código:\\
+
+\lstset{style=mystyle, language= C++}
+\lstinputlisting[language=C++, firstline=20,lastline=33]{./codes/tarea2.cpp}
+
+Como se puede ver en la 3a línea, se tiene que lo que hace es comparar el valor actual, con el siguiente; si se halla una coincidencia, se aumenta el contador, a la vez que se aumenta el iterador; en caso contrario, se copia el contador hasta el cual hubo coincidencia, y luego, el número que se estaba comparando.\\
 
 \newpage
 
+\subsubsection{Función cuentaNumeros}
+
+Esta función responde a lo que se requería en la tarea y que era el de contar la cantidad de números 1,2,3 y 4 que se presentan a lo largo de los niveles de la secuencia. Se implementa a través de las siguientes líneas:\\
+
 \lstset{style=mystyle, language= C++}
-\lstinputlisting[language=C++, firstline=27,lastline=33]{./codes/tarea2v7.cpp}\label{lst:sumofvec}
+\lstinputlisting[language=C++, firstline=48,lastline=69]{./codes/tarea2.cpp}\label{lst:sumofvec}
 
-En este caso, la condición a evaluar es que si ya se ha recorrido el vector, entonces se haga un $\texttt{push\_{back(counter)}}$, es decir, se indique cuántas coincidencias hubieron para cuando se recorrió completamente el vector, y además, se hace un $\texttt{push\_{back(*it)}}$, es decir, el valor de lo apuntado por el iterador a la hora de terminar el vector. Finalmente, se reinicia el valor del contador.\\
+\subsection{Resultados}
 
-Un ejemplo de como debería operar la lógica de esto, es que si la secuencia es esta:
-
-\begin{table}[h!]
+\begin{figure}[h!]
 \centering
-\begin{tabular}{c|c|c|}
-\cline{2-3}
-$L_{2}$ =& 1&1\\ \cline{2-3}
-\end{tabular}\vspace{0.2cm}
-%\caption{Representación de vector resultante}
-\end{table}
+\subfigure[Secuencia Look and Say hasta el nivel 15]{\includegraphics[scale=0.33]{./imagenes/captura2}\label{fig:3}}
+\subfigure[Secuencia Look and Say hasta el nivel 20]{\includegraphics[scale=0.2]{./imagenes/captura1}\label{fig:4}}
+\end{figure}
 
-Y es que el primer elemento se compara con el siguiente y como son iguales, avanza, el contador aumenta, es decir, $\texttt{counter=2}$, y como al avanzar el iterador, se encuentra que por la condición que establece el for, se ha llegado al final del vector, entonces se hace un $\texttt{push\_back}$ del contador y del número del cual se estaba buscando coincidencias.\\
-
-Con esto lo que se hace es que la secuencia resultante, es decir.
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{c|c|c|}
-\cline{2-3}
-$L_{3}$ =& 2&1\\ \cline{2-3}
-\end{tabular}\vspace{0.2cm}
-\caption{\textit{Dos unos}}
-\end{table}
-
-\subsection{Problemas}
-
-\begin{enumerate}[$\circ$]
-\item{Aún cuándo en otros intentos el código era capaz de evaluar las condiciones, es decir, de reconocer cuándo había llegado al final o bien, detectado una coincidencia. Sin embargo, para las iteraciones actuales, el código es incapaz de realizar dicha tarea.}
-
-\item{Parte del mismo problema mencionado anteriormente, es que el vector generado, es decir, para la segunda tercera iteración, cuyos valores son 2-1, al entrar en la función, countandsay, esta es incapaz de retener el valor generado de manera tal que la próxima vez que se le llame, parte del vector generado previamente. En mi opinión, es un tema de orden, de saber dónde poner éstas líneas.
-
-\lstset{style=mystyle, language= C++}
-\lstinputlisting[language=C++, firstline=8,lastline=15]{./codes/tarea2v7.cpp}\label{lst:sumofvec}
-
-Puesto que, si bien se hace una copia del vector resultante en la iteración anterior, según lo que se explica en las líneas:
-
-\lstset{style=mystyle, language= C++}
-\lstinputlisting[language=C++, firstline=13,lastline=14]{./codes/tarea2v7.cpp}\label{lst:sumofvec}
-
-Cuando se desea trabajar sobre el vector \texttt{ssal}, este no se traduce como la copia de los valores previos, sino como el resultado de valores actuales obtenidos a partir de las primeras líneas de código.}
-\end{enumerate}
-
-%\begin{thebibliography}{}
-%\bibitem{1} R. Contreras, \textit{}, Taller de Vida Artificial I, Universidad de Concepción, 2018.
-%\bibitem{2} R. Contreras, \textit{},Taller de Vida Artificial I, Universidad de Concepción, 2018.
-%\bibitem{3} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www.cs.us.es/~fsancho/?e=52}
-%\bibitem{4} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www.cs.us.es/~fsancho/?e=72}
-%\bibitem{5} Accedido en octubre de 2018. [En línea]. Disponible en: \url{https://advancedtech.wordpress.com/2008/08/08/redes-neuronales-4/}
-%\bibitem{6} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www.cs.us.es/~fsancho/?e=71}
-%
-%\bibitem{7} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://www0.unsl.edu.ar/~dmcc/files/tesis-f.pdf}
-%\bibitem{8} Accedido en octubre de 2018. [En línea]. Disponible en: \url{https://scielo.conicyt.cl/scielo.php?script=sci_arttext&pid=S0718-33052011000200010}
-%\bibitem{9} Accedido en octubre de 2018. [En línea]. Disponible en: \url{http://eprints.gla.ac.uk/3894/}
-%
-%\end{thebibliography}
-
+Como se puede apreciar en la figura \ref{fig:3}, se tiene que se hizo el alcance que para los valores de secuencia no positivos, esta no se desplegara
 \end{document}

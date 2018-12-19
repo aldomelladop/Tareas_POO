@@ -33,7 +33,7 @@ vector<int>countandSay(vector<int> look, int n)
     }
      /*la finalidad de este vector era que se pudiera almacenar una copia de los valores que se empujaron al vector
     es decir, 21 en el caso de la tercera iteracion, o 1211 en el caso de la cuarta, sin embargo, no lo pude hacer. Se me ocurre que de alguna manera, la copia
-    de este vector, debía ir fuera de esta función, fuera del for.*/
+    de este vector, debía ir fuera de esta funcion, fuera del for.*/
     return look;
 }
 

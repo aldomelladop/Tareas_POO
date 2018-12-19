@@ -17,7 +17,7 @@ typedef vector<int>::iterator iterador;
 class BigInteger {
 	public:
 		BigInteger();
-		BigInteger(string input){}
+		BigInteger(string input);
 
 		void setEntero(vecint a);
 		vecint getEntero();
@@ -43,41 +43,59 @@ class BigInteger {
 };
 
 ///Constructores
-BigInteger::BigInteger()
-{
-
-}
+BigInteger::BigInteger(){}
 
 BigInteger::BigInteger(string input)
 {
-	int k=0;
+	int k=0,j=0;
 	string::iterator it1 = input.begin();
 
-	for(it1;it1!=input.end();it1++)
+	do
 	{
 		k  = int(*it1-48);
-		//cout<<"k "<<k<<endl;
+		cout<<"k: "<<k<<endl;
 
-		if(it1==input.begin() && k!=0)
+		if(j==0 && k==0)
 		{
-			sign = *it1;
-			signo = *it1;
+			cout<<"Entro al if"<<endl;
+			signo = 0;
+			entero.push_back(k);	
+		}
+		else if(it1==input.begin() && *it1=='-')
+		{
+			cout<<"Entro al else if"<<endl;
+			signo = -1;
 		}
 		else
 		{
-			sign = ' ';
+			cout<<"Entro al else"<<endl;
 			signo = 1;
 			entero.push_back(k);
 		}
 		numero.push_back(k);
+		it1++;
+		j++;
 	}
+	while(*it1!='.' || );
+//isdigit
+//cctype
+//it1.end
+
 	if(signo = -1)
 	{
 		sign = '-';
 	}
-	else
+	else if(signo = 1)
 	{
         sign = ' ';
+	}
+	else if(signo= 0)
+	{
+		sign = '0';
+	}
+	else
+	{
+		cout<<"Error";
 	}
 }
 
@@ -121,9 +139,17 @@ void BigInteger::setSigno(int siggno)
 	{
 		sign = '-';
 	}
-	else
+	else if(siggno = 1)
 	{
         sign = ' ';
+	}
+	else if(siggno= 0)
+	{
+		sign = '0';
+	}
+	else
+	{
+		cout<<"Error";
 	}
 }
 

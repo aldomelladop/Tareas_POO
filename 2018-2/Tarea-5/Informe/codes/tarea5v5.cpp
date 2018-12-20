@@ -7,8 +7,6 @@
 #include <functional>   // plus
 #include <ctype.h> // isnumber & isdigit
 
-//#include <stdexcept>
-
 using namespace std;
 
 typedef unsigned char uc;
@@ -16,41 +14,47 @@ typedef list<int> li;
 typedef vector<int> vecint;
 typedef vector<int>::iterator iterador;
 
+int VectorToInt(vector<int> v); //función que convierte un vector a entero
+vecint stringToVecint(string input); //funcion que convierte un string a un vector de enteros
+
 class BigInteger {
 	public:
 		BigInteger();
 		BigInteger(string input);
 
-		void setEntero(vecint a);
+		bool esPar() const;
+		bool esImpar() const;
+		bool esChar() const;
+		bool esShortInt()const;
+		bool esLongInt()const;
+		bool esLongLongInt()const;
+		int signo() const;
+		BigInteger abs() const;
+		int cmp(BigInteger& q) const;
+
+        //Destructor
+       	~BigInteger();
+
+       	///Funciones miembro
+       	void setEntero(vecint a);
 		vecint getEntero();
 
 		void setSigno (int a);
 		uc getSigno();
 
-		bool esPar() const;
-		bool esImpar() const;
-		//int signo() const;
-		//BigInteger abs() const
-		//int cmp(BigInteger& q) const;
-
-		//li strToList(string str);
-
-        //Destructor
-       	~BigInteger();
 	private:
-		int signo;
+		int s;
 		uc sign; // Toma valores -1 o 1
 		vecint numero;
 		vecint entero; // Parte entera del BigInteger
 };
 
-///Constructores
+/*..............................................Constructores..........................................................*/
+
 BigInteger::BigInteger(){}
 
 BigInteger::BigInteger(string input)
 {
-	int largo = input.size();
-
 	int k=0,j=0;
 	string::iterator it1 = input.begin(); 
 
@@ -62,12 +66,12 @@ BigInteger::BigInteger(string input)
 		
 		if(*it1=='-'&& j==0)
 		{
-			signo = -1;
+			s = -1;
 			flag=1;
 		}
 		else if((*it1=='0' && j==0) || (*it1=='0'&& j==1))
 		{
-			signo=0;
+			s=0;
 			entero.push_back(0);
 			flag=0;
 		}
@@ -77,14 +81,14 @@ BigInteger::BigInteger(string input)
 		}
 		else 
 		{
-			if(signo==-1)
+			if(s==-1)
 			{
 				entero.push_back(k);
 				flag=1;
 			}
 			else
 			{
-				signo = 1;
+				s = 1;
 				entero.push_back(k);
 				flag=1;	
 			}
@@ -94,15 +98,15 @@ BigInteger::BigInteger(string input)
 		j++;
 	}
 
-	if(signo == -1)
+	if(s == -1)
 	{
 		sign = '-';
 	}
-	else if(signo == 1)
+	else if(s == 1)
 	{
         sign = '0';
 	}
-	else if(signo== 0)
+	else if(s== 0)
 	{
 		sign = '0';
 	}
@@ -126,7 +130,7 @@ void BigInteger::setSigno(int siggno)
 	}
 	else if(siggno== 1)
 	{
-       sign = '\0';
+       sign = '+';
 	}
 	else if(siggno==0)
 	{
@@ -171,7 +175,140 @@ bool BigInteger::esImpar() const
 	return flag;
 }
 
-///Destructor
+BigInteger BigInteger::abs()const
+{
+	string aux={""};
+
+	for(auto x:entero)
+	{
+		cout<<x;
+		aux.push_back(x);
+	}
+
+	BigInteger b(aux);
+
+	return b;
+}
+
+
+bool BigInteger::esChar()const
+{
+	bool control=true;
+
+	int n=VectorToInt(entero);
+
+    if(n<(numeric_limits<char>::max()))
+    {
+	   	if(n>(numeric_limits<char>::min()))
+	   	{
+	       	return control=true;
+	   	}
+    }
+    else
+    	{
+    		return control=false;
+    	}
+return control;
+}
+
+
+bool BigInteger::esShortInt()const
+{
+    bool control=true;
+
+    int n=VectorToInt(entero);
+
+    if(n<(numeric_limits<short int>::max()))
+    {
+        if(n>(numeric_limits<short int>::min()))
+        {
+            return control=true;
+        }
+    }
+    else
+        {
+            return control=false;
+        }
+return control;
+}
+
+bool BigInteger::esLongInt()const
+{
+    bool control=true;
+
+    int n=VectorToInt(entero);
+
+    if(n<(numeric_limits<long int>::max()))
+    {
+        if(n>(numeric_limits<long int>::min()))
+        {
+            return control=true;
+        }
+    }
+    else
+        {
+            return control=false;
+        }
+return control;
+}
+
+
+bool BigInteger::esLongLongInt()const
+{
+    bool control=true;
+
+    int n=VectorToInt(entero);
+
+    if(n<(numeric_limits<long long int>::max()))
+    {
+        if(n>(numeric_limits<long long int>::min()))
+        {
+            return control=true;
+        }
+    }
+    else
+        {
+            return control=false;
+        }
+return control;
+}
+
+int BigInteger::cmp(BigInteger& q)const
+{
+    int comparador,signo1,signo2;
+    vecint num1,num2;
+
+    //Datos del objeto BigInteger con el cual se comparara
+    
+    num1 = entero;
+    signo1 = s;
+
+    //numero respecto del cual se hace la comparacion
+
+    BigInteger aux(q);
+    num2 = aux.getEntero();
+    signo2 = aux.getSigno();
+
+
+
+    if (signo1>signo2)
+    {
+        comparador = 1;   
+    }
+    else if(signo1<signo2)
+    {
+        comparador = -1;   
+    }
+    else
+    {
+        comparador = 0;   
+    }   
+    return comparador;
+}
+
+
+
+/*..............................................Destructor..........................................................*/
 
 BigInteger::~BigInteger()
 {
@@ -180,7 +317,8 @@ BigInteger::~BigInteger()
     entero.clear();
 }
 
-///Funciones
+/*..............................................Funciones..........................................................*/
+
 void printList(li v)
 {
 	for(auto x:v)
@@ -196,14 +334,46 @@ void printList(li v)
   return suma;
 }
 
+int VectorToInt(vector<int> v)
+{
+    reverse(v.begin(), v.end());
+    int decimal = 1;
+    int total = 0;
+    for (auto& it : v)
+    {
+        total += it * decimal;
+        decimal *= 10;
+    }
+    return total;
+}
+/*
+
+vecint get_int(BigInteger b(string in))
+{
+    vecint aux;
+    aux =  b.getEntero();
+
+    return aux;
+}
+
+int get_signo(BigInteger b)
+{
+    int aux;
+    
+    aux =  b.getSigno();
+    return aux;
+}
+*/
+
 int main()
 {
-	vecint input, aux;
-	string numero,numero1,numero2;
+	vecint input,aux;
+	string numero,numero1,numero2,q;
 
 	cout<<"\nIngrese un número para crear el objeto BigInteger: ";
 	//cin>>numero;
-	numero = "-123.12";
+	numero = "-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950.12";
+	//numero = "0.0";
 	numero1 = "0.0";
 	numero2 = "1.1";
 
@@ -218,6 +388,8 @@ int main()
     for(auto x:aux){cout<<x;}
 
 	cout<<"\nProbando getSigno: "<<bi.getSigno();
+
+	cout<<"\nProbando abs(): ";	bi.abs();
 
 	cout<<"\nProbando esPar: ";
 	if(bi.esPar()==1)
@@ -239,7 +411,54 @@ int main()
         cout<<"El número no es Impar";
 	}
 
-	cout<<endl;
+	cout<<"\nProbando esChar: ";
+	if(bi.esChar()==1)
+	{
+	cout<<"Sí cabe";
+	}
+	else
+	{
+        cout<<"El número no cabe";
+	}
+
+	cout<<"\nProbando esShortInt: ";
+	if(bi.esShortInt()==1)
+	{
+	cout<<"Sí cabe";
+	}
+	else
+	{
+        cout<<"El número no cabe";
+	}
+
+	cout<<"\nProbando esLongInt: ";
+	if(bi.esLongInt()==1)
+	{
+	cout<<"Sí cabe";
+	}
+	else
+	{
+        cout<<"El número no cabe";
+	}
+
+	cout<<"\nProbando esLongLongInt: ";
+	if(bi.esLongLongInt()==1)
+	{
+	cout<<"Sí cabe";
+	}
+	else
+	{
+        cout<<"El número no cabe";
+	}
+
+	string aux1;
+	cout<<endl<<"\nFavor ingrese el número que desea comparar con el objeto BigInteger";
+	cin>>aux1;
+
+	cout<<"\nProbando cmp(), comparando con:  ";
+	
+	cout<<"\n"<<endl;
+
 	return 0;
 }
 

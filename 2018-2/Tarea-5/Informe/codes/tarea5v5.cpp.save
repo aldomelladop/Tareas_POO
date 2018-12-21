@@ -208,7 +208,7 @@ bool BigInteger::esChar()const
     int n=VectorToInt(entero);
 
     if(n>=SCHAR_MIN)
-    {
+    {   
         if(n<=SCHAR_MAX)
         {
             control=true;
@@ -228,7 +228,7 @@ bool BigInteger::esShortInt()const
     int n=VectorToInt(entero);
 
     if(n>=SHRT_MIN)
-    {
+    {   
         if(n<=SHRT_MAX)
         {
             control=true;
@@ -248,7 +248,7 @@ bool BigInteger::esLongInt()const
     int n=VectorToInt(entero);
 
     if(n>=LONG_MIN)
-    {
+    {   
         if(n<=LONG_MAX)
         {
             control=true;
@@ -268,7 +268,7 @@ bool BigInteger::esLongLongInt()const
     int n=VectorToInt(entero);
 
     if(n>=LLONG_MIN)
-    {
+    {   
         if(n<=LLONG_MAX)
         {
             control=true;
@@ -296,12 +296,15 @@ int BigInteger::cmp(BigInteger& q)const
     /* size(); es usado para vectores, mapas, listas, etc
      length(); es usado para strings*/
 
-    num2   = q.getEntero();
+  num2   = q.getEntero();
     largo2 = num2.size();
-    signo2 = q.getSigno(); //
+    signo2 = q.getSigno();
 
     iterador it1=num1.begin();
     iterador it2=num2.begin();
+
+    cout<<"\nsigno1: "<<signo1<<endl;
+    cout<<"\nsigno2: "<<signo2<<endl;
 
     if (signo1>signo2)
     {
@@ -315,11 +318,11 @@ int BigInteger::cmp(BigInteger& q)const
     {
         if(largo1>largo2)
         {
-            comparador=-1;
+            comparador=1;
         }
-        else if(largo1<largo2)
+        else if(largo2<largo1)
         {
-            comparador = 1;
+            comparador = -1;
         }
         else if(largo1==largo2)
         {
